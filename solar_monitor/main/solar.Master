@@ -1,0 +1,275 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="solar.master.cs" Inherits="solar_monitor.main.solar" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../images/favicon.ico">
+
+    
+	<!-- Vendors Style-->
+	<link rel="stylesheet" href="css/vendors_css.css">
+	  
+	<!-- Style-->  
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/skin_color.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="page-body skin-green" data-url="http://neon.dev">
+    <form id="form1" runat="server">
+        <div class="wrapper">
+            <div id="loader"></div>
+            <header class="main-header">
+                <div class="d-flex align-items-center logo-box justify-content-start">
+                    <a href="#" class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent" data-toggle="push-menu" role="button">
+                        <span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                    </a>
+                    <!-- Logo -->
+                    <a href="/main/summary" class="logo">
+                        <!-- logo-->
+                        <div class="logo-lg">
+                            <span class="light-logo">
+                                <img src="../images/logo-removebg-preview.png" alt="logo"></span>
+                            <span class="dark-logo">
+                                <img src="../images/logo-removebg-preview.png" alt="logo"></span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <div class="app-menu">
+                        <ul class="header-megamenu nav">
+                            <li class="btn-group nav-item d-md-none">
+                                <a href="#" class="waves-effect waves-light nav-link push-btn" data-toggle="push-menu" role="button">
+                                    <span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                                </a>
+                            </li>
+                            <li class="btn-group nav-item d-none d-xl-inline-block">
+                                <a href="/main/wallboard" class="waves-effect waves-light nav-link svg-bt-icon" title="Wallboard-Live">
+                                    <i class="fa fa-desktop"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
+                            </li>
+                            <li class="btn-group nav-item d-none d-xl-inline-block">
+                                <a href="/history_forecast" class="waves-effect waves-light nav-link svg-bt-icon" title="Forecast & History">
+                                    <i class="wi wi-day-sleet"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
+                            </li>
+                            <li class="btn-group nav-item d-none d-xl-inline-block">
+                                <a href="reporting/cluster_reports" class="waves-effect waves-light nav-link svg-bt-icon" title="Report">
+                                    <i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="navbar-custom-menu r-side">
+                        <ul class="nav navbar-nav">
+                            <li class="btn-group nav-item d-lg-inline-flex d-none">
+                                <a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link full-screen" title="Full Screen">
+                                    <i class="icon-Expand-arrows"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
+                            </li>
+                            <%--	<li class="btn-group d-lg-inline-flex d-none">
+				<div class="app-menu">
+					<div class="search-bx mx-5">
+						<div>
+							<div class="input-group">
+							  <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+							  <div class="input-group-append">
+								<button class="btn" type="submit" id="button-addon3"><i class="ti-search"></i></button>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>--%>
+                            <!-- Notifications -->
+                            <li class="dropdown notifications-menu">
+                                <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="Notifications">
+                                    <i class="icon-Notifications"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
+                                <ul class="dropdown-menu animated bounceIn">
+
+                                    <li class="header">
+                                        <div class="p-20">
+                                            <div class="flexbox">
+                                                <div>
+                                                    <h4 class="mb-0 mt-0">Notifications</h4>
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu sm-scrol">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-stop text-success"></i>No Notifications to show
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <!-- User Account-->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="waves-effect waves-light dropdown-toggle" data-bs-toggle="dropdown" title="User">
+                                    <i class="icon-User"><span class="path1"></span><span class="path2"></span></i>
+                                </a>
+                                <ul class="dropdown-menu animated flipInX">
+                                    <li class="user-body">
+                                        <a class="dropdown-item" href="#"><i class="ti-user text-muted me-2"></i>Profile</a>
+                                        <a class="dropdown-item" href="#"><i class="ti-wallet text-muted me-2"></i>Documentation</a>
+                                        <a class="dropdown-item" href="#"><i class="ti-settings text-muted me-2"></i>Settings</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/"><i class="ti-lock text-muted me-2"></i>Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- Control Sidebar Toggle Button -->
+
+
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="main-sidebar">
+                <!-- sidebar-->
+                <section class="sidebar position-relative">
+                    <div class="multinav">
+                        <div class="multinav-scroll" style="height: 100%;">
+                            <!-- sidebar menu-->
+                            <ul class="sidebar-menu" data-widget="tree">
+                                <li class="header">Summary</li>
+                                <li class="actives" id="dashnav" runat="server">
+                                    <a href="/main/summary">
+
+                                        <i class="fa fa-home"><span class="path1"></span><span class="path2"></span></i>
+                                        <span>Summary Home</span>
+                                        <span class="pull-right-container"></span>
+                                    </a>
+
+                                </li>
+                                <li class="actives" id="dashnav2" runat="server">
+                                    <a href="/main/wallboard">
+
+                                        <i class="fa fa-desktop"><span class="path1"></span><span class="path2"></span></i>
+                                        <span>Live Screen</span>
+                                        <span class="pull-right-container"></span>
+                                    </a>
+
+                                </li>
+
+                                <li class="header">Other Reports</li>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-bolt"><span class="path1"></span><span class="path2"></span></i>
+                                        <span>Voltage&Current</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-right pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li id="addnew" runat="server"><a href="/main/strings"><i class="fa fa-tasks"><span class="path1"></span><span class="path2"></span></i>Strings</a></li>
+
+                                        <li id="validate" runat="server"><a href="/main/voic"><i class="fa fa-check-circle-o"><span class="path1"></span><span class="path2"></span></i>Voc,Isc & Radiation</a></li>
+                                    </ul>
+                                </li>
+
+
+
+
+
+                                <li class="treeview">
+                                    <a href="#">
+                                        <i class="fa fa-tasks"><span class="path1"></span><span class="path2"></span></i>
+                                        <span>Data Logger</span>
+                                        <span class="pull-right-container">
+                                            <i class="fa fa-angle-right pull-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li id="analyticsnav" runat="server"><a href="/main/dlavg"><i class="fa fa-pie-chart"><span class="path1"></span><span class="path2"></span></i>Data Logger Avg.</a></li>
+                                        <li id="clusterreportnav" runat="server"><a href="/main/dlmax"><i class="fa fa-map-pin"><span class="path1"></span><span class="path2"></span></i>Data Logger Max.</a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="header">MISC </li>
+                                <li class="treeview">
+                                    <a href="/main/documentation">
+                                        <i class="fa fa-file-pdf-o"><span class="path1"></span><span class="path2"></span></i>
+                                        <span>Documentation</span>
+
+                                    </a>
+
+                                </li>
+                                <li class="treeview">
+                                    <a href="/main/contact">
+                                        <i class="fa fa-phone"><span class="path1"></span><span class="path2"></span></i>
+                                        <span>Contact</span>
+
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="/">
+                                        <i class="ti-lock text-muted"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        <span>Logout</span>
+
+                                    </a>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <div class="sidebar-footer">
+                    <a href="javascript:void(0)" class="link" data-bs-toggle="tooltip" title="Settings"><span class="icon-Settings-2"></span></a>
+                    <%--		<a href="#" class="link" data-bs-toggle="tooltip" title="Email"><span class="icon-Mail"></span></a>--%>
+                    <a href="/" class="link" data-bs-toggle="tooltip" title="Logout"><span class="icon-Lock-overturning"><span class="path1"></span><span class="path2"></span></span></a>
+                </div>
+            </aside>
+            <div class="content-wrapper">
+                <div class="container-full">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <footer class="main-footer">
+                &copy; <%=DateTime.Now.Year %> <b>University of Fort Hare</b>. All Rights Reserved.
+            </footer>
+
+            <div class="control-sidebar-bg"></div>
+
+        </div>
+    </form>
+    	<script src="js/vendors.min.js"></script>
+	<script src="js/pages/chat-popup.js"></script>
+    <script src="../assets/icons/feather-icons/feather.min.js"></script>	
+    <script src="../assets/vendor_plugins/weather-icons/WeatherIcon.js"></script>
+	<script src="../assets/vendor_components/datatable/datatables.min.js"></script>
+	<!-- EduAdmin App -->
+	<script src="js/template.js"></script>
+	
+	<script src="js/pages/weather.js"></script>
+    <script src="js/pages/data-table.js"></script>
+
+</body>
+</html>
