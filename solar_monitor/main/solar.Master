@@ -56,13 +56,13 @@
                                     <i class="fa fa-desktop"><span class="path1"></span><span class="path2"></span></i>
                                 </a>
                             </li>
-                            <li class="btn-group nav-item d-none d-xl-inline-block">
+                          <%--  <li class="btn-group nav-item d-none d-xl-inline-block">
                                 <a href="/history_forecast" class="waves-effect waves-light nav-link svg-bt-icon" title="Forecast & History">
                                     <i class="wi wi-day-sleet"><span class="path1"></span><span class="path2"></span></i>
                                 </a>
-                            </li>
+                            </li>--%>
                             <li class="btn-group nav-item d-none d-xl-inline-block">
-                                <a href="reporting/cluster_reports" class="waves-effect waves-light nav-link svg-bt-icon" title="Report">
+                                <a href="/main/strings" class="waves-effect waves-light nav-link svg-bt-icon" title="Report">
                                     <i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                 </a>
                             </li>
@@ -179,7 +179,7 @@
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-bolt"><span class="path1"></span><span class="path2"></span></i>
-                                        <span>Voltage&Current</span>
+                                        <span>IV Curve Tracer</span>
                                         <span class="pull-right-container">
                                             <i class="fa fa-angle-right pull-right"></i>
                                         </span>
@@ -198,7 +198,7 @@
                                 <li class="treeview">
                                     <a href="#">
                                         <i class="fa fa-tasks"><span class="path1"></span><span class="path2"></span></i>
-                                        <span>Data Logger</span>
+                                        <span>CS LoggerNet</span>
                                         <span class="pull-right-container">
                                             <i class="fa fa-angle-right pull-right"></i>
                                         </span>
@@ -210,11 +210,11 @@
                                     </ul>
                                 </li>
 
-                                <li class="header">MISC </li>
-                                <li class="treeview">
-                                    <a href="/main/documentation">
-                                        <i class="fa fa-file-pdf-o"><span class="path1"></span><span class="path2"></span></i>
-                                        <span>Documentation</span>
+                                <li class="header">DATA </li>
+                                <li >
+                                    <a href="/main/fetch_data">
+                                        <i class="fa fa-database"><span class="path1"></span><span class="path2"></span></i>
+                                        <span>Fetch Data</span>
 
                                     </a>
 

@@ -11,7 +11,7 @@ namespace solar_monitor.main
 {
 
 
-    public partial class strings
+    public partial class fetch_data
     {
 
         /// <summary>
@@ -33,49 +33,40 @@ namespace solar_monitor.main
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl innertext;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.Button Button3;
 
         /// <summary>
-        /// DropDownList2 control.
+        /// hostnametxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText hostnametxt;
 
         /// <summary>
-        /// startdatetxt control.
+        /// usernametxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl startdatetxt;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText usernametxt;
 
         /// <summary>
-        /// enddatetxt control.
+        /// username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl enddatetxt;
-
-        /// <summary>
-        /// countryoforiginlistbx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox countryoforiginlistbx;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword username;
 
         /// <summary>
         /// Button1 control.
@@ -96,30 +87,30 @@ namespace solar_monitor.main
         protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// Literal1 control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.Button Button4;
 
         /// <summary>
-        /// Literal2 control.
+        /// datfilelocationtxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText datfilelocationtxt;
 
         /// <summary>
-        /// Repeater25 control.
+        /// Button5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater25;
+        protected global::System.Web.UI.WebControls.Button Button5;
     }
 }

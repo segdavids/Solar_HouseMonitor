@@ -104,14 +104,14 @@ namespace solar_monitor.main
   
               function drawChart()  {  
 var options = {
-title: 'Current (A) vs Voltage (V) Graph for H" + srting + "");
+title: 'Current (A) & Voltage (V) Graph for String" + srting + "");
                 strScript.Append(@"',
              curveType: 'function',
                   
                   chartArea: { width: '90%', height: '90%' },
                   legend: {position: 'right', textStyle: { color: '#b1b1b1' } },
                     lineWidth: 2,
-                  backgroundColor: {fill: '#f1f3f0'},
+                  backgroundColor: {fill: 'transparent'},
 curveType: 'function',
           pointSize: 2,
                   animation: {
@@ -236,7 +236,7 @@ var options = {
                 });
 
                 var client = new RestSharp.RestClient("https://api.openweathermap.org");
-                var request = new RestSharp.RestRequest("/data/2.5/onecall?lat=" + 6.465422 + "&lon=" + 3.406448 + "&exclude=minutely,hourly&appid=6a8a5d190e30bc6950e102a0c8d18b88", RestSharp.Method.GET);
+                var request = new RestSharp.RestRequest("/data/2.5/onecall?lat=" + -31.487157183388565 + "&lon=" + 26.920641642801872 + "&exclude=minutely,hourly&appid=6a8a5d190e30bc6950e102a0c8d18b88", RestSharp.Method.GET);
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 var response = client.Execute(request);
                 int statcode = Convert.ToInt32(response.StatusCode);

@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="css/horizontal-menu.css"> 
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/skin_color.css">
-    <title></title>
+    <title>FHIT Monitor | Wallboard</title>
 </head>
 
 <body class="layout-top-nav skin-green theme-primary">
@@ -56,13 +56,13 @@
 					<i class="fa fa-home"><span class="path1"></span><span class="path2"></span></i>
 			    </a>
 			</li>
-			<li class="btn-group nav-item d-none d-xl-inline-block">
+			<%--<li class="btn-group nav-item d-none d-xl-inline-block">
 				<a href="/history_forecast" class="waves-effect waves-light nav-link svg-bt-icon" title="Forecast & History">
 					<i class="wi wi-day-sleet"><span class="path1"></span><span class="path2"></span></i>
 			    </a>
-			</li>
+			</li>--%>
 			<li class="btn-group nav-item d-none d-xl-inline-block">
-				<a href="reporting/cluster_reports" class="waves-effect waves-light nav-link svg-bt-icon" title="Report">
+				<a href="/main/strings" class="waves-effect waves-light nav-link svg-bt-icon" title="Report">
 					<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
 			    </a>
 			</li>
@@ -151,7 +151,7 @@
 				<span id="innertext" runat="server">test</span>
 			  </div>
 			<div class="row">
-				<div class="col-xl-8">	
+				<div class="col-xl-12">	
 					
 				
 					
@@ -159,7 +159,7 @@
 
 						<asp:Repeater ID="Repeater25" runat="server">
 							<ItemTemplate>
-						<div class="col-lg-4 col-12">
+						<div class="col-lg-3 col-12">
                             <a href="#" class="box pull-up">
                                 <div class="box-header with-border " style="background-color:#4e8cc7">
                                     <h4 class="m-0"><i class="fa fa-tasks"></i> STRING 1</h4>
@@ -193,7 +193,7 @@
 							</asp:Repeater>
 						<asp:Repeater ID="Repeater2" runat="server">
 							<ItemTemplate>
-						<div class="col-lg-4 col-12">
+						<div class="col-lg-3 col-12">
                             <a href="#" class="box pull-up">
                                 <div class="box-header with-border " style="background-color:#4e8cc7">
                                     <h4 class="m-0"><i class="fa fa-tasks"></i> STRING 2</h4>
@@ -227,7 +227,7 @@
 							</asp:Repeater>
 						<asp:Repeater ID="Repeater4" runat="server">
 							<ItemTemplate>
-						<div class="col-lg-4 col-12">
+						<div class="col-lg-3 col-12">
                             <a href="#" class="box pull-up">
                                 <div class="box-header with-border " style="background-color:#4e8cc7">
                                     <h4 class="m-0"><i class="fa fa-tasks"></i> STRING 3</h4>
@@ -260,115 +260,9 @@
 								</ItemTemplate>
 							</asp:Repeater>
 						
-					
-					
-						<div class="col-lg-12">
-							<div class="box">
-								<div class="box-header">
-									<h4 class="box-title">Featured Graphical Representation</h4>
-								</div>
-								<div class="box-body">
-									<h3 class="mt-0"><span class="badge badge-sm badge-dot badge-primary me-5">
-												</span>	<span style="font-size:small">Voltage</span>
-										<span class="badge badge-sm badge-dot badge-danger me-5">
-												 </span>	<span style="font-size:small">Current</span>
-									</h3>
-									<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                                        <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-									 <div id="chartt_div" style="height: 600px; width: 100%"></div>
-<%--									<div id="charts_widget_2_chart"></div>--%>
-								</div>
-							</div>
-						
-						</div>
-					</div>
-					
-					
-				</div>
-				<div class="col-xl-4 col-12">
-					
-			<%--		<div class="box no-shadow mb-0 bg-transparent">
-						<div class="box-header no-border px-0">
-							<h4 class="box-title">Averages</h4>							
-							<div class="box-controls pull-right d-md-flex d-none">
-							  <span><b>Date:</b> <%=DateTime.Now.ToString("dd/MMM/yyyy HH:mm") %> </span>
-							</div>
-						</div>
-					</div>--%>
-								
-							
-				
-
-					<div class="box">
-						<div class="box-header with-border">
-						<h4 class="box-title">	Average  Voltage Analysis (Strings 1-5)</h4>
-						</div>
-						<div class="box-body">
-<%--							<div id="revenue5"></div>--%>
-							<div id="piechart_3d2" style="height: 400px"></div>
-							<h3 class="mt-0"><span class="badge badge-sm badge-dot badge-primary me-5">
-												</span>	<span style="font-size:small">All units in Voltage(V)</span>
-									
-									</h3>
-						</div>
-					</div>
-					<div class="box">
-						<div class="box-header with-border">
-<h4 class="box-title">Average  Current Analysis (Strings 1-5)</h4>				
-						</div>
-						<div class="box-body">
-<%--							<div id="revenue5"></div>--%>
-							<div id="pie_chart" style="height: 400px"></div>
-							<h3 class="mt-0"><span class="badge badge-sm badge-dot badge-primary me-5">
-												</span>	<span style="font-size:small">All units in Amps(A)</span>
-									
-									</h3>
-						</div>
-					</div>
-						
-					<div>
-						<asp:Repeater ID="repeater3" runat="server">
+					<asp:Repeater ID="Repeater6" runat="server">
 							<ItemTemplate>
-						<div class="box mb-15 pull-up">
-							<div class="box-body">
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center">
-										<div class="me-15 bg-success-light h-50 w-50 l-h-60 rounded text-center">
-											<span class="fa fa-anchor fs-24"><span class="path1"></span><span class="path2"></span></span>
-										</div>
-										<div class="d-flex flex-column fw-500">
-											<a href="#" class="text-dark hover-primary mb-1 fs-16">Anchor:  <%#  Eval("anchor") %></a>
-											<span class="text-fade">Total Plot Mapped: <%# String.Format("{0:N2}", Eval("totalhec")) %> Ha</span>
-										</div>
-									</div>
-									<a href="#">
-										<span class="icon-Arrow-right fs-24"><span class="path1"></span><span class="path2"></span></span>
-									</a>
-								</div>
-							</div>
-						</div>
-						</ItemTemplate>
-							</asp:Repeater>
-					</div>		
-				
-				</div>
-			</div>
-		</section>
-                                            </div>
-                                        </div>
-
-                                        <div class="carousel-item">
-                                            <div class="card-info">
-                                                <section class="content">
-                                                    <div id="Div1" runat="server" visible="false" class="alert alert-danger col-xl-6 offset-md-3">
-                                                        <span id="Span1" runat="server">test</span>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-xl-8">
-                                                            <div class="row">
-																<asp:Repeater ID="Repeater6" runat="server">
-							<ItemTemplate>
-						<div class="col-lg-4 col-12">
+						<div class="col-lg-3 col-12">
                             <a href="#" class="box pull-up">
                                 <div class="box-header with-border " style="background-color:#4e8cc7">
                                     <h4 class="m-0"><i class="fa fa-tasks"></i> STRING 4</h4>
@@ -400,6 +294,111 @@
 							</div>
 								</ItemTemplate>
 							</asp:Repeater>
+					
+					
+					</div>
+					
+					
+				</div>
+				<div class="col-xl-4 col-12">
+					
+			<%--		<div class="box no-shadow mb-0 bg-transparent">
+						<div class="box-header no-border px-0">
+							<h4 class="box-title">Averages</h4>							
+							<div class="box-controls pull-right d-md-flex d-none">
+							  <span><b>Date:</b> <%=DateTime.Now.ToString("dd/MMM/yyyy HH:mm") %> </span>
+							</div>
+						</div>
+					</div>--%>
+								
+							
+				
+
+					<%--<div class="box">
+						<div class="box-header with-border">
+						<h4 class="box-title">	Average  Voltage Analysis (Strings 1-5)</h4>
+						</div>
+						<div class="box-body">
+							<div id="piechart_3d2" style="height: 400px"></div>
+							<h3 class="mt-0"><span class="badge badge-sm badge-dot badge-primary me-5">
+												</span>	<span style="font-size:small">All units in Voltage(V)</span>
+									
+									</h3>
+						</div>
+					</div>--%>
+					<%--<div class="box">
+						<div class="box-header with-border">
+<h4 class="box-title">Average  Current Analysis (Strings 1-5)</h4>				
+						</div>
+						<div class="box-body">
+							<div id="pie_chart" style="height: 400px"></div>
+							<h3 class="mt-0"><span class="badge badge-sm badge-dot badge-primary me-5">
+												</span>	<span style="font-size:small">All units in Amps(A)</span>
+									
+									</h3>
+						</div>
+					</div>--%>
+						
+					<div>
+						<asp:Repeater ID="repeater3" runat="server">
+							<ItemTemplate>
+						<div class="box mb-15 pull-up">
+							<div class="box-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div class="d-flex align-items-center">
+										<div class="me-15 bg-success-light h-50 w-50 l-h-60 rounded text-center">
+											<span class="fa fa-anchor fs-24"><span class="path1"></span><span class="path2"></span></span>
+										</div>
+										<div class="d-flex flex-column fw-500">
+											<a href="#" class="text-dark hover-primary mb-1 fs-16">Anchor:  <%#  Eval("anchor") %></a>
+											<span class="text-fade">Total Plot Mapped: <%# String.Format("{0:N2}", Eval("totalhec")) %> Ha</span>
+										</div>
+									</div>
+									<a href="#">
+										<span class="icon-Arrow-right fs-24"><span class="path1"></span><span class="path2"></span></span>
+									</a>
+								</div>
+							</div>
+						</div>
+						</ItemTemplate>
+							</asp:Repeater>
+					</div>		
+				
+				</div>
+					<div class="col-lg-12">
+							<div class="box">
+								<div class="box-header">
+									<h4 class="box-title">Featured Graphical Representation</h4>
+								</div>
+								<div class="box-body">
+									<h3 class="mt-0"><span class="badge badge-sm badge-dot badge-primary me-5">
+												</span>	<span style="font-size:small">Voltage</span>
+										<span class="badge badge-sm badge-dot badge-danger me-5">
+												 </span>	<span style="font-size:small">Current</span>
+									</h3>
+									<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                                        <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+									 <div id="chartt_div" style="height: 600px; width: 100%"></div>
+<%--									<div id="charts_widget_2_chart"></div>--%>
+								</div>
+							</div>
+						
+						</div>
+			</div>
+		</section>
+                                            </div>
+                                        </div>
+
+                                        <div class="carousel-item">
+                                            <div class="card-info">
+                                                <section class="content">
+                                                    <div id="Div1" runat="server" visible="false" class="alert alert-danger col-xl-6 offset-md-3">
+                                                        <span id="Span1" runat="server">test</span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-8">
+                                                            <div class="row">
+																
 						<asp:Repeater ID="Repeater7" runat="server">
 							<ItemTemplate>
 						<div class="col-lg-4 col-12">
@@ -467,7 +466,7 @@
                                                                                         <tr>
                                                                                             <th>S/N</th>
                                                                                             <th>Report Date</th>
-                                                                                            <th>Report Time(24 Hrs)</th>
+                                                                                            <th>Report Time (24 Hrs)</th>
                                                                                             <th>Voic</th>
                                                                                             <th>Isc</th>
                                                                                             <th>Radiation</th>
@@ -503,7 +502,7 @@
 							<div class="flex-grow-1 p-30 flex-grow-1 bg-img dask-bg bg-none-md" >
 								<div class="row">
 									<div class="col-12 col-xl-7">
-										<h2>Welcome back, <strong><span id="firstnametxt" runat="server"></span></strong></h2>
+										<h3>Welcome back, FHIT Admin <strong><span id="firstnametxt" runat="server"></span></strong></h3>
 
                                             <asp:Repeater ID="Repeater5" runat="server">
                                                 <ItemTemplate>

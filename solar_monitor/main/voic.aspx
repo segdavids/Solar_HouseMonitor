@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main/solar.Master" AutoEventWireup="true" CodeBehind="voic.aspx.cs" Inherits="solar_monitor.main.voic" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-	<title>Solar Monitor - Voc, Isc, & Radiation Analysis</title>
+	<title>FHIT Monitor - Voc, Isc, & Radiation Analysis</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div class="content-header">

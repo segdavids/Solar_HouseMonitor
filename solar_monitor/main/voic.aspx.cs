@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -14,7 +15,10 @@ namespace solar_monitor.main
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
 
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
         }
 
         protected void Button1_Click(object sender, EventArgs e)

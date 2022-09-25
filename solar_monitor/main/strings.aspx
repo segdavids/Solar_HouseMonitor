@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main/solar.Master" AutoEventWireup="true" CodeBehind="strings.aspx.cs" Inherits="solar_monitor.main.strings" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Solar Monitor - String Analysis</title>
+    <title>FHIT Monitor - String Analysis</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="content-header">
@@ -56,6 +56,8 @@
                                             <asp:ListItem>Both</asp:ListItem>
                                             <asp:ListItem>Voltage</asp:ListItem>
                                             <asp:ListItem>Current</asp:ListItem>
+                                            <asp:ListItem>Volt. VS Curr.</asp:ListItem>
+                                            <asp:ListItem>Curr. VS Volt.</asp:ListItem>
                                         </asp:DropDownList>
 									</div>
 								  </div>
@@ -81,9 +83,20 @@
 						</div>
 					</div>
 						 <div class="row">
-							 <div class="col-3">
-								 <asp:Button ID="Button1" type="button" class="waves-effect waves-light btn btn-success mb-5" OnClick="Button1_Click" runat="server" ForeColor="White" Text="Get Stat" />
-								 <asp:Button ID="Button2" type="button" class="waves-effect waves-light btn btn-warning mb-5" runat="server" Text="Clear" />
+							   <div class="col-md-3">
+									<div class="form-group">
+									  <label class="form-label">Unit</label>
+										<asp:ListBox ID="countryoforiginlistbx" class="form-control custom-select" runat="server" SelectionMode="Multiple"></asp:ListBox>
+								
+									</div>
+								  </div>
+							   <div class="col-md-3">
+								 <div class="form-group">
+									  <label class="form-label"></label><br /><br /><br />
+<asp:Button ID="Button1" type="button" class="waves-effect waves-light btn btn-success mb-5" OnClick="Button1_Click" runat="server" ForeColor="White" Text="Get Stat" />
+								 <asp:Button ID="Button2" type="button" class="waves-effect waves-light btn btn-warning mb-5" runat="server" Text="Clear" />								
+									</div>
+								 
 							<!-- /.input group -->
 						</div>
 						 </div>
@@ -101,6 +114,8 @@
                              <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                              <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                              <div id="curve_chart" style="height: 750px; width: 100%"></div>
+							  <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+                                        <div id="cslogger_graph" style="height: 750px; width: 100%"></div>
 
                          </div>
 				<!-- /.box-body -->
@@ -133,7 +148,7 @@
 								<td>  <%#Container.ItemIndex+1 %></td>
 								<td><%# Convert.ToDateTime(Eval("Date")).ToString("dd/MMM/yyyy") %></td>
 								<td><%# Eval("Time") %></td>
-								<td><%# Eval("voltage") %></td>
+								<td><%# Eval("Voltage") %></td>
 								<td><%# Eval("SCurrent") %></td>
 							</tr>
 							</ItemTemplate>

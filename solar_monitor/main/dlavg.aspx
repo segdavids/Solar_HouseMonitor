@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main/solar.Master" AutoEventWireup="true" CodeBehind="dlavg.aspx.cs" Inherits="solar_monitor.main.dlavg" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Solar Monitor - Data Logger Average</title>
+    <title>FHIT Monitor - Data Logger Average</title>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
