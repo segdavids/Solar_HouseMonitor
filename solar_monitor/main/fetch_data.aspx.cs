@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using solar_monitor.Models;
 using System.IO;
+using AspDotNet.FTPHelper;
 
 namespace solar_monitor.main
 {
@@ -35,17 +36,77 @@ namespace solar_monitor.main
                 string filename = "SolarHouse_Average.dat";
                 string filepath = getfilepath();
                 string[] lines = File.ReadAllLines(filepath+filename);
+                int countsucc = 0;
+                int counfail = 0;
                 for (int i = 4; i < lines.Length; i++)
                 {
-                    DateTime dtime = Convert.ToDateTime(lines[i].Split(',')[0].ToString());
-                    Int32 id = Convert.ToInt32(lines[i].Split(' ')[0]);
-                    DateTime dateTime = Convert.ToDateTime(lines[i].Split(' ')[1].ToString() + " " + lines[i].Split(' ')[2].ToString());
-                    int id1 = Convert.ToInt32(lines[i].Split(' ')[3]);
-                    int id2 = Convert.ToInt32(lines[i].Split(' ')[4]);
-                    int id3 = Convert.ToInt32(lines[i].Split(' ')[5]);
-                    int id4 = Convert.ToInt32(lines[i].Split(' ')[6]);
-                   // Insert(id, dateTime, id1, id2, id3, id4);
+
+                   //string test = lines[i].Split(',')[0].ToString();
+                    //datfilelocationtxt.Value = test;
+                    DateTime dtime = Convert.ToDateTime(lines[i].Split(',')[0].ToString().Replace(@"""",""));
+                    int record = Convert.ToInt32(lines[i].Split(',')[1]);
+                    double BattV_Min = Convert.ToDouble(lines[i].Split(',')[2]);
+                    double Rt_CNRM_Avg = Convert.ToDouble(lines[i].Split(',')[3]);
+                    double Rt_WKSH_Avg = Convert.ToDouble(lines[i].Split(',')[4]);
+                    double Rt_DkRM_Avg = Convert.ToDouble(lines[i].Split(',')[5]);
+                    double Rt_OUDR_Avg = Convert.ToDouble(lines[i].Split(',')[6]);
+                    double WDir_Std = Convert.ToDouble(lines[i].Split(',')[7]);
+                    double WSpd_Avg = Convert.ToDouble(lines[i].Split(',')[8]);
+                    double Sol_Glo_Avg = Convert.ToDouble(lines[i].Split(',')[9]);
+                    double Sol_tilt_Avg = Convert.ToDouble(lines[i].Split(',')[10]);
+                    double CHP1_Avg = Convert.ToDouble(lines[i].Split(',')[11]);
+                    double CMP10_Avg = Convert.ToDouble(lines[i].Split(',')[12]);
+                    double CMP10_Shaded_Avg = Convert.ToDouble(lines[i].Split(',')[13]);
+                    double SGR4_Avg = Convert.ToDouble(lines[i].Split(',')[14]);
+                    double Ambt_lux_Avg = Convert.ToDouble(lines[i].Split(',')[15]);
+                    double Temp_C_Avg_1 = Convert.ToDouble(lines[i].Split(',')[16]);
+                    double Temp_C_Avg_2 = Convert.ToDouble(lines[i].Split(',')[17]);
+                    double Temp_C_Avg_3 = Convert.ToDouble(lines[i].Split(',')[18]);
+                    double Temp_C_Avg_4 = Convert.ToDouble(lines[i].Split(',')[19]);
+                    double Temp_C_Avg_5 = Convert.ToDouble(lines[i].Split(',')[20]);
+                    double Temp_C_Avg_6 = Convert.ToDouble(lines[i].Split(',')[21]);
+                    double Temp_C_Avg_7 = Convert.ToDouble(lines[i].Split(',')[22]);
+                    double Temp_C_Avg_8 = Convert.ToDouble(lines[i].Split(',')[23]);
+                    double Temp_C_Avg_9 = Convert.ToDouble(lines[i].Split(',')[24]);
+                    double Temp_C_Avg_10 = Convert.ToDouble(lines[i].Split(',')[25]);
+                    double Temp_C_Avg_11 = Convert.ToDouble(lines[i].Split(',')[26]);
+                    double Temp_C_Avg_12 = Convert.ToDouble(lines[i].Split(',')[27]);
+                    double Temp_C_Avg_13 = Convert.ToDouble(lines[i].Split(',')[28]);
+                    double Temp_C_Avg_14 = Convert.ToDouble(lines[i].Split(',')[29]);
+                    double Temp_C_Avg_15 = Convert.ToDouble(lines[i].Split(',')[30]);
+                    double Temp_C_Avg_16 = Convert.ToDouble(lines[i].Split(',')[31]);
+                    double Temp_C_Avg_17 = Convert.ToDouble(lines[i].Split(',')[32]);
+                    double Temp_C_Avg_18 = Convert.ToDouble(lines[i].Split(',')[33]);
+                    double Temp_C_Avg_19 = Convert.ToDouble(lines[i].Split(',')[34]);
+                    double Temp_C_Avg_20 = Convert.ToDouble(lines[i].Split(',')[35]);
+                    double Tmp_Wbt_Avg = 0; //Convert.ToDouble(lines[i].Split(',')[36]);
+                    double Tmp_Wmd_Avg = 0; //Convert.ToDouble(lines[i].Split(',')[37]);
+                    double Tmp_Wtp_Avg = 0; //Convert.ToDouble(lines[i].Split(',')[38]);
+                    double Tmp_Ebt_Avg = 0; //Convert.ToDouble(lines[i].Split(',')[39]);
+                    double Tmp_Emd_Avg = 0; //\ Convert.ToDouble(lines[i].Split(',')[40]);
+                    double Tmp_Etp_Avg = 0;// Convert.ToDouble(lines[i].Split(',')[41]);
+                   
+                    string insertin = "insert into DL_Avg values('"+dtime+"',"+ record + ","+ BattV_Min + ","+ Rt_CNRM_Avg + ","+ Rt_WKSH_Avg + ","+ Rt_DkRM_Avg + ","+ Rt_OUDR_Avg + ","+ WDir_Std + ","+ WSpd_Avg + ","+ Sol_Glo_Avg + ","+ Sol_tilt_Avg + ","+ CHP1_Avg + ","+ CMP10_Avg + ","+ CMP10_Shaded_Avg + ","+ SGR4_Avg + ","+ Ambt_lux_Avg + ","+ Temp_C_Avg_1 + ","+ Temp_C_Avg_2+ ","+ Temp_C_Avg_3+ ","+ Temp_C_Avg_4 + ","+ Temp_C_Avg_5+ ","+ Temp_C_Avg_6 + ","+ Temp_C_Avg_7+ ","+ Temp_C_Avg_8 + ","+ Temp_C_Avg_9 + ","+ Temp_C_Avg_10 + ","+ Temp_C_Avg_11 + ","+ Temp_C_Avg_12 + ","+ Temp_C_Avg_13 + ","+ Temp_C_Avg_14 + ","+ Temp_C_Avg_15 + ","+ Temp_C_Avg_16 + ","+ Temp_C_Avg_17 + ","+ Temp_C_Avg_18 + ","+ Temp_C_Avg_19 + ","+ Temp_C_Avg_20 + ","+ Tmp_Wbt_Avg + ","+ Tmp_Wmd_Avg + ","+ Tmp_Wtp_Avg + ","+ Tmp_Ebt_Avg + ","+ Tmp_Emd_Avg + ","+ Tmp_Etp_Avg +")";
+                   string rowss = Utils.NonQeryRequest(insertin);
+                    switch (rowss)
+                    {
+                        case "200":
+                            countsucc++;
+                            
+                            break;
+                        case "No changes were made":
+                            counfail++;
+                          //  alert.Visible = true;
+                            //alert.Attributes.Add("class", "alert alert-danger col-xl-6 offset-md-3");
+                          //  innertext.InnerHtml = "CS Logger Data fetching failed: please check logs";
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                alert.Visible = true;
+                alert.Attributes.Add("class", "alert alert-danger col-xl-6 offset-md-3");
+                innertext.InnerHtml =countsucc+ " CS Logger Data successfully fetched and loaded to DB /n ";
                 // string name = settingtype.cslogger.ToString();
             }
             catch(Exception ex)
@@ -76,6 +137,16 @@ namespace solar_monitor.main
         {
             try
             {
+                WebClient client = new WebClient();
+                client.Credentials = new NetworkCredential("hmi", "12345678");
+                client.DownloadFile(
+                    "ftp://169.254.156.226/HMI/HMI-000/History/CSV/H0001.csv", @"C:\Files\H0001.csv");
+                //"ftp://52.229.31.163/HMI/HMI-000/History/CSV/H0001.csv", @"C:\Users\Ajigbotoluwa O.David\source\repos\solar_monitor\solar_monitor\Files\H0001.csv");
+
+                FTPHelper fTPHelper = new FTPHelper("ftp://52.229.31.163", 60201, "nyscjobs_new", "12345678");
+                FTPHelper fTPHelper = new FTPHelper("ftp://52.229.31.163", 60201, "nyscjobs_new", "247newjobs@??!!");
+                fTPHelper.DownloadFile("/H0001.csv", @"~/Files");
+
                 string username = "nyscjobs_new";
                 string password = "247newjobs@??!!";
                 var utility = new FtpUtility();

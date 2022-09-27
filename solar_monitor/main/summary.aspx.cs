@@ -99,7 +99,7 @@ namespace solar_monitor.main
             int srting = rd.Next(1, 6);
            // string date = DateTime.Now.ToString("MM/dd/yyyy");
             string date = "02/25/2022";
-            string get = $"select Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid={srting} and Date = '{date}' order by Time asc ";
+            string get = $"select top 15 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid={srting} order by Time desc ";// and Date = '{date}' order by Time asc ";
             DataTable dt = Utils.GetRequest(get);
             StringBuilder strScript = new StringBuilder();
 
@@ -184,7 +184,7 @@ var options = {
              legend: { position: 'bottom' },
 
                   
-                  chartArea: { width: '90%', height: '90%' },
+                  chartArea: { width: '90%', height: '80%' },
                   legend: {position: 'top', textStyle: { color: '#b1b1b1' } },
 
                   backgroundColor: {

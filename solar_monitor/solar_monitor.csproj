@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspDotNet.FTPHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspDotNet.FTPHelper.1.0.6\lib\netstandard2.0\AspDotNet.FTPHelper.dll</HintPath>
+    </Reference>
     <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
       <HintPath>..\packages\LumenWorks.Framework.IO.3.8.0\lib\net20\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
@@ -10779,6 +10782,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\vendor_components\flat-color-icons\PNG\512\A\" />
+    <Folder Include="Files\" />
     <Folder Include="images\front-end-img\pagebanner\" />
     <Folder Include="images\front-end-img\promo\" />
   </ItemGroup>

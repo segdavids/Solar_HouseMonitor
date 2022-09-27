@@ -85,6 +85,19 @@ namespace solar_monitor.main
         {
             try
             {
+                int count = countryoforiginlistbx.GetSelectedIndices().Count();
+                if (count ==0)
+                {
+                    alert.Visible = true;
+                    innertext.InnerHtml = "You must select at least one parameter for CS Logger Chart";
+                    return;
+                }
+                if (count > 4)
+                {
+                    alert.Visible = true;
+                    innertext.InnerHtml = "You cannot plot for more than 4 parameters at once";
+                    return;
+                }
                 string rtype = DropDownList2.SelectedItem.Text;             
                 string fromdate = startdatetxt.Value;
                 string enddate = enddatetxt.Value;
@@ -137,13 +150,7 @@ namespace solar_monitor.main
                 }
 
                 //CS LOGGER GRAPH 
-                int count = countryoforiginlistbx.GetSelectedIndices().Count();
-                if (count > 4)
-                {
-                    alert.Visible = true;
-                    innertext.InnerHtml = "You cannot plot for more than 4 parameters at once";
-                    return;
-                }
+                
                 string condition5 = string.Empty;
                 foreach (ListItem item in countryoforiginlistbx.Items)
                 {
@@ -160,14 +167,14 @@ namespace solar_monitor.main
                 //string get = $"select * from DL_Avg order by Timestamp desc ";
                 string detcslogger = $"select * from DL_Avg where Timestamp between '{fromdate} 00:00' and '{enddate} 23:59' order by Timestamp asc ";
                 DataTable csloggerdat = Utils.GetRequest(detcslogger);
-                Repeater25.DataSource = csloggerdat;
-                Repeater25.DataBind();
+                Repeater1.DataSource = csloggerdat;
+                Repeater1.DataBind();
                 GetStringCurrent(csloggerdat, fromdate, enddate, condition5);
             }
             catch (Exception ex)
             {
                 alert.Visible = true;
-                innertext.InnerHtml = ex.Message.ToString();
+                innertext.InnerHtml = ex.ToString();
             }
         }
 
@@ -201,7 +208,7 @@ var options = {
                  chartArea: { width: '90%', height: '90%' },
                   legend: {position: 'right', textStyle: { color: '#b1b1b1' } },
                     lineWidth: 2,
-                  backgroundColor: {fill: '#f1f3f0'},
+                  backgroundColor: {fill: '#transparent'},
 curveType: 'function',
           pointSize: 2,
                   backgroundColor: {
@@ -330,7 +337,7 @@ title: 'Current (A) vs Voltage (V) Graph for H" + str + "");
                   chartArea: { width: '90%', height: '90%' },
                   legend: {position: 'right', textStyle: { color: '#b1b1b1' } },
                     lineWidth: 2,
-                  backgroundColor: {fill: '#f1f3f0'},
+                  backgroundColor: {fill: '#transparent'},
 curveType: 'function',
           pointSize: 2,
                   animation: {

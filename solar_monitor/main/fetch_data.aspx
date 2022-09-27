@@ -35,7 +35,8 @@
 					 <div class="form-group">
                          <div class="row" style="margin-bottom: 20px">
                              <div class="col-3">
-                                 <asp:Button ID="Button3" type="button" Style="height: 50px" OnClick="Button1_Click" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White" Text="Fetch IV Curve Tracer DATA" />
+								 <asp:LinkButton ID="LinkButton2" type="button" Style="height: 50px" OnClick="Button1_Click" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White"><b>FETCH IV CURVE TRACER DATA</b></asp:LinkButton>
+                                <%-- <asp:Button ID="Button3" type="button" Style="height: 50px" OnClick="Button1_Click" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White" Text="Fetch IV Curve Tracer DATA" />--%>
                                  <!-- /.input group -->
                              </div>
                          </div>
@@ -46,7 +47,7 @@
 							  <%--<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							  </div>--%>
-							  <input type="text" class="form-control" required="required" runat="server" placeholder="FTP HostName"  id="hostnametxt" >
+							  <input type="text" class="form-control" runat="server" placeholder="FTP HostName"  id="hostnametxt" >
 							</div>
 							<!-- /.input group -->
 						</div>
@@ -56,7 +57,7 @@
 							  <%--<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							  </div>--%>
-							  <input type="text" class="form-control" required="required" runat="server" placeholder="FTP Username"  id="usernametxt" >
+							  <input type="text" class="form-control" runat="server" placeholder="FTP Username"  id="usernametxt" >
 							</div>
 							<!-- /.input group -->
 						</div>
@@ -66,15 +67,15 @@
 							 <%-- <div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							  </div>--%>
-							  <input type="password" class="form-control" required="required" runat="server" placeholder="FTP Password"  id="username" >
+							  <input type="password" class="form-control" runat="server" placeholder="FTP Password"  id="username" >
 							</div>
 							<!-- /.input group -->
 						</div>
 					</div>
                          <div class="row" style="margin-top: 20px">
                              <div class="col-3">
-                                 <asp:Button ID="Button1" type="button" OnClick="Button1_Click" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White" Text="Update FTP Credentials" />
-                                 <asp:Button ID="Button2" type="button" class="waves-effect waves-light btn btn-warning mb-5" runat="server" Text="Clear" />
+                                 <asp:Button ID="Button1" type="button" OnClick="Button1_Click" class="waves-effect waves-light btn btn-warning mb-5" runat="server" style="color:white" ForeColor="White" Text="Update FTP Credentials" />
+<%--                                 <asp:Button ID="Button2" type="button" class="waves-effect waves-light btn btn-info mb-5" runat="server" Text="Clear" />--%>
                                  <!-- /.input group -->
                              </div>
                          </div>
@@ -91,7 +92,8 @@
 						 <div class="form-group">
                          <div class="row" style="margin-bottom: 20px">
                              <div class="col-3">
-                                 <asp:Button ID="Button4" type="button" Style="height: 50px" OnClick="fetch_cslogger" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White" Text="Fetch CS Logger DATA" />
+								 <asp:LinkButton ID="LinkButton1" type="button" Style="height: 50px" OnClick="fetch_cslogger" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White"><b>FETCH CS LOGGER DATA</b></asp:LinkButton>
+<%--                                 <asp:Button ID="Button4" type="button" Style="height: 50px" OnClick="fetch_cslogger" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White" Text="FETCH CS LOGGER DATA" />--%>
                                  <!-- /.input group -->
                              </div>
                          </div>
@@ -109,7 +111,8 @@
 					</div>
                          <div class="row" style="margin-top: 20px">
                              <div class="col-3">
-                                 <asp:Button ID="Button5" type="button" OnClick="Button1_Click" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White" Text="Update .dat File Location" />
+								 <asp:LinkButton ID="Button5" type="button" OnClick="Button1_Click" class="waves-effect waves-light btn btn-warning mb-5" runat="server" ForeColor="White">Update .dat File Location</asp:LinkButton>
+<%--                                 <asp:Button  Text="" />--%>
                                  <!-- /.input group -->
                              </div>
                          </div>
