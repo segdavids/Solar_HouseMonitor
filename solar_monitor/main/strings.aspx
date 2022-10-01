@@ -36,7 +36,7 @@
 					 <div class="form-group">
 					<div class="row">
 						
-						  <div class="col-md-3">
+						  <div class="col-md-1">
 									<div class="form-group">
 									  <label class="form-label">String Type</label>
 										<asp:DropDownList ID="DropDownList1" class="form-select" runat="server">
@@ -49,19 +49,21 @@
 									
 									</div>
 								  </div>
-						  <div class="col-md-3">
+						  <div class="col-md-1">
 									<div class="form-group">
 									  <label class="form-label">Unit</label>
 										<asp:DropDownList ID="DropDownList2" class="form-select" runat="server">
-                                            <asp:ListItem>Both</asp:ListItem>
+                                            <asp:ListItem>All</asp:ListItem>
                                             <asp:ListItem>Voltage</asp:ListItem>
                                             <asp:ListItem>Current</asp:ListItem>
+                                            <asp:ListItem>P(P)</asp:ListItem>
                                             <asp:ListItem>Volt. VS Curr.</asp:ListItem>
                                             <asp:ListItem>Curr. VS Volt.</asp:ListItem>
+                                            <asp:ListItem>P. VS Volt.</asp:ListItem>
                                         </asp:DropDownList>
 									</div>
 								  </div>
-						<div class="col-3">
+						<div class="col-2">
 							  <label class="form-label">Start Date</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
@@ -71,16 +73,36 @@
 							</div>
 							<!-- /.input group -->
 						</div>
-						<div class="col-3">
+						<div class="col-2">
+							  <label class="form-label">Start Time</label>
+							<div class="input-group">
+							  <div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							  </div>
+							  <input class="form-control" runat="server" id="starttimetxt" type="time" name="time">
+							<!-- /.input group -->
+						</div>
+							</div>
+						<div class="col-2">
 						   <label class="form-label">End Date</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							  </div>
-							  <input type="date" class="form-control" required="required" runat="server" id="enddatetxt" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
+							  <input type="date" class="form-control" required="required" runat="server"  id="enddatetxt" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
 							</div>
 							<!-- /.input group -->
 						</div>
+							<div class="col-2">
+							  <label class="form-label">End Time</label>
+							<div class="input-group">
+							  <div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							  </div>
+							  <input class="form-control" runat="server" id="endtimetxt" type="time" name="time">
+							<!-- /.input group -->
+						</div>
+							</div>
 					</div>
 						 <div class="row">
 							   <div class="col-md-3">

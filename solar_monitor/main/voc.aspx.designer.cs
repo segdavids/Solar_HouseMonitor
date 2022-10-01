@@ -60,6 +60,15 @@ namespace solar_monitor.main
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl startdatetxt;
 
         /// <summary>
+        /// starttimetxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl starttimetxt;
+
+        /// <summary>
         /// enddatetxt control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace solar_monitor.main
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl enddatetxt;
+
+        /// <summary>
+        /// endtimetxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl endtimetxt;
 
         /// <summary>
         /// Button1 control.

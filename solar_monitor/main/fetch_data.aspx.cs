@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using solar_monitor.Models;
 using System.IO;
 using AspDotNet.FTPHelper;
+using System.Data.SqlClient;
 
 namespace solar_monitor.main
 {
@@ -19,6 +20,15 @@ namespace solar_monitor.main
        public enum settingtype
         {
             cslogger, ivcurve
+        }
+        public class uploadparams
+        {
+            public TimeSpan time { get; set; }
+            public string date { get; set; }
+            public double voltage { get; set; }
+            public double current { get; set; }
+           
+            // public string Email { get; set; }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -137,48 +147,51 @@ namespace solar_monitor.main
         {
             try
             {
-                WebClient client = new WebClient();
-                client.Credentials = new NetworkCredential("hmi", "12345678");
-                client.DownloadFile(
-                    "ftp://169.254.156.226/HMI/HMI-000/History/CSV/H0001.csv", @"C:\Files\H0001.csv");
-                //"ftp://52.229.31.163/HMI/HMI-000/History/CSV/H0001.csv", @"C:\Users\Ajigbotoluwa O.David\source\repos\solar_monitor\solar_monitor\Files\H0001.csv");
-
-                FTPHelper fTPHelper = new FTPHelper("ftp://52.229.31.163", 60201, "nyscjobs_new", "12345678");
-                FTPHelper fTPHelper = new FTPHelper("ftp://52.229.31.163", 60201, "nyscjobs_new", "247newjobs@??!!");
-                fTPHelper.DownloadFile("/H0001.csv", @"~/Files");
-
-                string username = "nyscjobs_new";
-                string password = "247newjobs@??!!";
-                var utility = new FtpUtility();
-                utility.UserName = "nyscjobs_new";
-                utility.Password = "247newjobs@??!!";
-                utility.Path = "52.229.31.163";
-
-                WebClient request = new WebClient();
-                string url = "ftp://ftp.microsoft.com/developr/fortran/" + "README.TXT";
-                request.Credentials = new NetworkCredential("anonymous", "anonymous@example.com");
-
-
-                if (utility.ListFiles().Count() > 0)
+                    string getcred = "select * from Settings where SettingId=1";
+                DataTable dt = Utils.GetRequest(getcred);
+                string domain = dt.Rows[0]["FTP_Domain"].ToString();
+                string username = dt.Rows[0]["Username"].ToString();
+                string password = dt.Rows[0]["Password"].ToString();
+                string fileurl = dt.Rows[0]["FileUrl"].ToString();
+                for (int i = 1; i < 6; i++)
                 {
-                    //The folder contains files
-                    for (int i = 1; i <= 6; i++)
-                    {
-                        var fileNameToCkeck = "H000" + i.ToString();
-                        if(utility.ListFiles().Contains(fileNameToCkeck))
-                        {
-                            //The file exists
-                        }
-                    }
+                    WebClient client = new WebClient();
+                  //  client.Credentials = new NetworkCredential(username, password);
+                   // client.DownloadFile(
+                      //  $"ftp://{domain}+{fileurl}+H000+{i}.csv", @"C:\Files\H000"+i+".csv");
+                    string excelPath = @"C:\Files\H000" + i + ".csv";
+                     var csvTable = new DataTable();
+                            using (var csvReader = new CsvReader(new StreamReader(File.OpenRead(excelPath)), true))
+                            {
+                                csvTable.Load(csvReader);
+                                List<uploadparams> searchParameters = new List<uploadparams>();
+                                for (int j = 2; j < csvTable.Rows.Count; j++)
+                                {
+                            alert.Visible = true;
+                            innertext.InnerHtml = csvTable.Rows[j][0].ToString().ToString();
+                            TimeSpan time = TimeSpan.Parse(csvTable.Rows[j][0].ToString());
+                            
+                            string date = Convert.ToDateTime(csvTable.Rows[j][1]).ToString("yyyy-MM-dd");
+                            double voltage = Convert.ToDouble(csvTable.Rows[j][2]);
+                            double current = Convert.ToDouble(csvTable.Rows[j][3]);
+                            string inserth = $"insert into Temp_Voltage_1 values({i},{date},{time},{voltage},{current})";
+                            Utils.NonQeryRequest(inserth);
+                            
+
+                                    //searchParameters.Add(new uploadparams { time = TimeSpan.Parse(csvTable.Rows[j][0].ToString()), date = Convert.ToDateTime(csvTable.Rows[i][1]).ToString("yyyy-MM-dd"), voltage = Convert.ToDouble(csvTable.Rows[i][2]), current = Convert.ToDouble(csvTable.Rows[i][3])});
+                                }                              
+                            }
+                           
+                            alert.Visible = true;
+                            alert.Attributes.Add("class", "alert alert-success col-xl-6 offset-md-3");
+                            innertext.InnerHtml = "Complete! (See logs for Details)";
                 }
-                
-                
 
-               
             }
-            catch
+            catch(Exception ex)
             {
-
+                alert.Visible = true;
+                innertext.InnerHtml = ex.ToString();
             }
 
         }
@@ -225,14 +238,14 @@ namespace solar_monitor.main
             }
         }
 
-        public class uploadparams
-        {
-            public string time { get; set; }
-            public string date { get; set; }
-            public string voltage { get; set; }
-            public double current { get; set; }
+        //public class uploadparams
+        //{
+        //    public string time { get; set; }
+        //    public string date { get; set; }
+        //    public string voltage { get; set; }
+        //    public double current { get; set; }
           
-        }
+        //}
 
         //public void valdateandupload(string filename)
         //{

@@ -395,17 +395,22 @@ var options = {
  title: 'STRING "+ stringtxt + " " + graphtitle + " from " + from + " to " + to + " ");
                 strScript.Append(@"',
              curveType: 'function',
-             legend: { position: 'bottom' },
-                 
+             legend: { position: 'top' },
+                  hAxis: {
+          title: 'Date'
+        },
            
-          
-                  
-                 chartArea: { width: '90%', height: '90%' },
+           vAxis: {
+          title: 'Population (millions)',
+        },
+                   width: '90%',
+        height: '90%',
+                 
                   legend: {position: 'right', textStyle: { color: '#b1b1b1' } },
                     lineWidth: 3,
                   backgroundColor: {fill: 'transparent'},
 curveType: 'function',
-          pointSize: 2,
+          pointSize: 3,
                  
                   animation: {
                       duration: 1000,
@@ -414,7 +419,7 @@ curveType: 'function',
               };
 
                     var data = google.visualization.arrayToDataTable([
-                  ['"+ firstvs + "','"+seconfvstitle+"'");
+                  ['" + firstvs + "','"+seconfvstitle+"'");
                
                     
                 strScript.Append(@"],");

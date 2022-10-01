@@ -187,7 +187,7 @@
                                     <ul class="treeview-menu">
                                         <li id="addnew" runat="server"><a href="/main/strings"><i class="fa fa-tasks"><span class="path1"></span><span class="path2"></span></i>Strings</a></li>
 
-                                        <li id="validate" runat="server"><a href="/main/voic"><i class="fa fa-check-circle-o"><span class="path1"></span><span class="path2"></span></i>Voc,Isc & Radiation</a></li>
+                                        <li id="validate" runat="server"><a href="/main/voc"><i class="fa fa-check-circle-o"><span class="path1"></span><span class="path2"></span></i>Voc & Isc</a></li>
                                     </ul>
                                 </li>
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main/solar.Master" AutoEventWireup="true" CodeBehind="voic.aspx.cs" Inherits="solar_monitor.main.voic" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/main/solar.Master" AutoEventWireup="true" CodeBehind="voc.aspx.cs" Inherits="solar_monitor.main.voic" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 	<title>FHIT Monitor - Voc, Isc, & Radiation Analysis</title>
 </asp:Content>
@@ -6,13 +6,13 @@
      <div class="content-header">
 			<div class="d-flex align-items-center">
 				<div class="me-auto">
-					<h3 class="page-title">Voc, Isc & Radiation Analysis</h3>
+					<h3 class="page-title">Voc & Isc</h3>
 					<div class="d-inline-block align-items-center">
 						<nav>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="/main/summary"><i class="mdi mdi-home-outline"></i></a></li>
 								<li class="breadcrumb-item" aria-current="page">Analysis</li>
-								<li class="breadcrumb-item active" aria-current="page">Voc, Isc & Radiation Analysis</li>
+								<li class="breadcrumb-item active" aria-current="page">Voc & Isc</li>
 							</ol>
 						</nav>
 					</div>
@@ -36,7 +36,7 @@
 					 <div class="form-group">
 					<div class="row">
 						
-						 <div class="col-md-3">
+						 <div class="col-md-1">
 									<div class="form-group">
 									  <label class="form-label">String Type</label>
 										<asp:DropDownList ID="DropDownList1" class="form-select" runat="server">
@@ -48,18 +48,18 @@
                                         </asp:DropDownList>
 									</div>
 								  </div>
-						  <div class="col-md-3">
+						  <div class="col-md-1">
 									<div class="form-group">
 									  <label class="form-label">Unit</label>
 									 <asp:DropDownList ID="DropDownList2" class="form-select" runat="server">
 										 <asp:ListItem>All</asp:ListItem>
 										 <asp:ListItem>Voc</asp:ListItem>
 										 <asp:ListItem>Isc</asp:ListItem>
-										 <asp:ListItem>Radiation</asp:ListItem>
+<%--										 <asp:ListItem>Radiation</asp:ListItem>--%>
 									  </asp:DropDownList>
 									</div>
 								  </div>
-						<div class="col-3">
+						<div class="col-2">
 							  <label class="form-label">Start Date</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
@@ -69,7 +69,17 @@
 							</div>
 							<!-- /.input group -->
 						</div>
-						<div class="col-3">
+						<div class="col-2">
+							  <label class="form-label">Start Time</label>
+							<div class="input-group">
+							  <div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							  </div>
+							  <input class="form-control" runat="server" id="starttimetxt" type="time" name="time">
+							<!-- /.input group -->
+						</div>
+							</div>
+						<div class="col-2">
 						   <label class="form-label">End Date</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
@@ -79,6 +89,16 @@
 							</div>
 							<!-- /.input group -->
 						</div>
+							<div class="col-2">
+							  <label class="form-label">End Time</label>
+							<div class="input-group">
+							  <div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							  </div>
+							  <input class="form-control" runat="server" id="endtimetxt" type="time" name="time">
+							<!-- /.input group -->
+						</div>
+							</div>
 					</div>
 						 <div class="row">
 							 <div class="col-3">
@@ -122,7 +142,7 @@
 								<th>Report Time</th>
 								<th>Voic</th>
 								<th>Isc</th>
-								<th>Radiation</th>
+<%--								<th>Radiation</th>--%>
 							</tr>
 						</thead>
 						<tbody>
@@ -134,7 +154,7 @@
 								<td><%# Eval("Time") %></td>
 								<td><%# Eval("Voc") %></td>
 								<td><%# Eval("isc") %></td>
-								<td><%# Eval("Radiation") %></td>
+<%--								<td><%# Eval("Radiation") %></td>--%>
 							</tr>
 							</ItemTemplate>
 						</asp:Repeater>

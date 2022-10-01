@@ -26,9 +26,15 @@ namespace solar_monitor.main
             try
             {
                 string rtype = DropDownList2.SelectedItem.Text;
-                string fromdate = startdatetxt.Value;
-                string enddate = enddatetxt.Value;
+                string fromdate = Convert.ToDateTime(startdatetxt.Value).ToString("yyyy-MM-dd");
+                string tempstarttime = starttimetxt.Value==""? "12:00 AM": starttimetxt.Value;
+                string starttime = (Convert.ToDateTime(tempstarttime)).ToString("HH:MM");
+                string enddate = Convert.ToDateTime(enddatetxt.Value).ToString("yyyy-MM-dd");// enddatetxt.Value;
+                string tempendtime = endtimetxt.Value == "" ? "12:00 AM" : endtimetxt.Value;
+                string endtime = (Convert.ToDateTime(tempendtime)).ToString("HH:MM");
                 string stringtxt = string.Empty;
+               // fromdate = fromdate + " " + starttime;
+               // enddate = enddate + " " + endtime;
                 string st = DropDownList1.SelectedItem.Text;
                 switch (st)
                 {
@@ -50,11 +56,13 @@ namespace solar_monitor.main
                     default:
                         break;
                 }
-                string get = $"select Date,Voc,Isc,Radiation,convert(varchar(5), Time,21) as time from Voic_Ic_Rad where String_No={stringtxt} and Date between '{fromdate}' and '{enddate}' order by Time asc ";
+                string get = $"select Date,Voc,Isc,Radiation,convert(varchar(5), Time,21) as time from Voic_Ic_Rad where String_No={stringtxt} and Date between '{fromdate}' and '{enddate}' and Time between '{tempstarttime}' and '{tempendtime}' order by Time asc ";
+                
                 stringspan.InnerHtml = stringtxt;
-                string converteddatefrom = Convert.ToDateTime(fromdate).ToString("dd, MMM yyyy");
-                string converteddateto = Convert.ToDateTime(enddate).ToString("dd, MMM yyyy");
-                startdatespan.InnerHtml = Convert.ToDateTime(fromdate).ToString("dd MMM, yyyy") + " TO "+ Convert.ToDateTime(enddate).ToString("dd MMM, yyyy") ;
+               stringspan.InnerHtml = get;
+                string converteddatefrom = Convert.ToDateTime(fromdate).ToString("dd, MMM yyyy") + " " + tempstarttime ;
+                string converteddateto = Convert.ToDateTime(enddate).ToString("dd, MMM yyyy") + " " + tempendtime;
+                startdatespan.InnerHtml = Convert.ToDateTime(fromdate).ToString("dd MMM, yyyy") +" "+ tempstarttime +" TO "+ Convert.ToDateTime(enddate).ToString("dd MMM, yyyy") +" "+ tempendtime ;
                 DataTable dt = Utils.GetRequest(get);
                 Repeater25.DataSource = dt;
                 Repeater25.DataBind();
@@ -101,7 +109,7 @@ namespace solar_monitor.main
   
               function drawChart()  {  
 var options = {
- title: 'Voc, Isc, & Radiation (A) Graph for STRING" + str + " from "+from+" to "+ to + " ");
+ title: 'Voc & Isc Graph for STRING" + str + " from "+from+ " to "+ to + " ");
                 strScript.Append(@"',
              curveType: 'function',
              legend: { position: 'bottom' },
@@ -123,11 +131,11 @@ curveType: 'function',
               };
 
                     var data = google.visualization.arrayToDataTable([
-                  ['Date', 'Voc','Isc','Radiation'],");
+                  ['Date', 'Voc','Isc'],");
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM") + " " + row["Time"] + "'," + row["Voc"] + "," + row["Isc"] + "," + row["Radiation"] + "],");
+                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM") + " " + row["Time"] + "'," + row["Voc"] + "," + row["Isc"] + "],");
                 }
                 strScript.Remove(strScript.Length - 1, 1);
                 strScript.Append("]);");

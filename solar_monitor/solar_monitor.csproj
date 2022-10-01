@@ -10636,7 +10636,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="main\strings.aspx" />
     <Content Include="main\summary.aspx" />
-    <Content Include="main\voic.aspx" />
+    <Content Include="main\voc.aspx" />
     <Content Include="main\wallboard.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -10753,12 +10753,12 @@
     <Compile Include="main\summary.aspx.designer.cs">
       <DependentUpon>summary.aspx</DependentUpon>
     </Compile>
-    <Compile Include="main\voic.aspx.cs">
-      <DependentUpon>voic.aspx</DependentUpon>
+    <Compile Include="main\voc.aspx.cs">
+      <DependentUpon>voc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="main\voic.aspx.designer.cs">
-      <DependentUpon>voic.aspx</DependentUpon>
+    <Compile Include="main\voc.aspx.designer.cs">
+      <DependentUpon>voc.aspx</DependentUpon>
     </Compile>
     <Compile Include="main\wallboard.aspx.cs">
       <DependentUpon>wallboard.aspx</DependentUpon>
