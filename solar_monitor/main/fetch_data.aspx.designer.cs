@@ -60,13 +60,22 @@ namespace solar_monitor.main
         protected global::System.Web.UI.HtmlControls.HtmlInputText usernametxt;
 
         /// <summary>
-        /// username control.
+        /// passwordtxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword username;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword passwordtxt;
+
+        /// <summary>
+        /// fileurltxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText fileurltxt;
 
         /// <summary>
         /// Button1 control.

@@ -35,7 +35,7 @@
 					 <div class="form-group">
                          <div class="row" style="margin-bottom: 20px">
                              <div class="col-3">
-								 <asp:LinkButton ID="LinkButton2" type="button" Style="height: 50px" OnClick="Button1_Click" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White"><b>FETCH IV CURVE TRACER DATA</b></asp:LinkButton>
+								 <asp:LinkButton ID="LinkButton2" type="button" Style="height: 50px" OnClick="fetchivcurvetracer" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White"><b>FETCH IV CURVE TRACER DATA</b></asp:LinkButton>
                                 <%-- <asp:Button ID="Button3" type="button" Style="height: 50px" OnClick="Button1_Click" class="waves-effect waves-light btn btn-success mb-5" runat="server" ForeColor="White" Text="Fetch IV Curve Tracer DATA" />--%>
                                  <!-- /.input group -->
                              </div>
@@ -67,14 +67,24 @@
 							 <%-- <div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							  </div>--%>
-							  <input type="password" class="form-control" runat="server" placeholder="FTP Password"  id="username" >
+							  <input type="password" class="form-control" runat="server" placeholder="FTP Password"  id="passwordtxt" >
+							</div>
+							<!-- /.input group -->
+						</div>
+						<div class="col-3">
+						   <label class="form-label">File URL</label>
+							<div class="input-group">
+							 <%-- <div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							  </div>--%>
+							  <input type="text" class="form-control" runat="server" placeholder="FTP file location"  id="fileurltxt" >
 							</div>
 							<!-- /.input group -->
 						</div>
 					</div>
                          <div class="row" style="margin-top: 20px">
                              <div class="col-3">
-                                 <asp:Button ID="Button1" type="button" OnClick="Button1_Click" class="waves-effect waves-light btn btn-warning mb-5" runat="server" style="color:white" ForeColor="White" Text="Update FTP Credentials" />
+                                 <asp:Button ID="Button1" type="button" OnClick="updateftp" class="waves-effect waves-light btn btn-warning mb-5" runat="server" style="color:white" ForeColor="White" Text="Update FTP Credentials" />
 <%--                                 <asp:Button ID="Button2" type="button" class="waves-effect waves-light btn btn-info mb-5" runat="server" Text="Clear" />--%>
                                  <!-- /.input group -->
                              </div>
@@ -111,7 +121,7 @@
 					</div>
                          <div class="row" style="margin-top: 20px">
                              <div class="col-3">
-								 <asp:LinkButton ID="Button5" type="button" OnClick="Button1_Click" class="waves-effect waves-light btn btn-warning mb-5" runat="server" ForeColor="White">Update .dat File Location</asp:LinkButton>
+								 <asp:LinkButton ID="Button5" type="button" OnClick="updatedatfilelocation" class="waves-effect waves-light btn btn-warning mb-5" runat="server" ForeColor="White">Update .dat File Location</asp:LinkButton>
 <%--                                 <asp:Button  Text="" />--%>
                                  <!-- /.input group -->
                              </div>

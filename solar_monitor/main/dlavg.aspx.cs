@@ -23,8 +23,8 @@ namespace solar_monitor.main
         {
             if (!IsPostBack)
             {
-                string query = "select ParameterName from Parameters";
-                Utils.BindListBox(countryoforiginlistbx, query, "ParameterName", "ParameterName"/*, "Select State"*/);
+                string query = "select ParameterName,Unit from Parameters";
+                Utils.BindListBox(countryoforiginlistbx, query, "ParameterName", "Unit"/*, "Select State"*/);
             }
         }
 
@@ -56,26 +56,38 @@ namespace solar_monitor.main
                     alert.Visible = true;
                     innertext.InnerHtml = "You cannot plot for more than 4 parameters at once";
                     return;
-                }              
+                }
                 string condition5 = string.Empty;
                 foreach (ListItem item in countryoforiginlistbx.Items)
                 {
-                    condition5 += item.Selected ? string.Format("{0},", item.Value) : string.Empty;
+                    condition5 += item.Selected ? string.Format("{0},", item.Text + "(" + item.Value + ")") : string.Empty;
                     count = count + 1;
-                        
-                        
-                        
-                    
                 }
 
-                string fromdate = startdatetxt.Value;
-                string enddate = enddatetxt.Value;
+                //string fromdate = startdatetxt.Value;
+                // string enddate = enddatetxt.Value;
+
+                string fromtime = starttimetxt.Value == string.Empty ? "00:00" : starttimetxt.Value;
+                string fromdate = Convert.ToDateTime(startdatetxt.Value + " " + fromtime).ToString("yyyy-MM-dd HH:mm");
+                //   string enddate = enddatetxt.Value;
+                string endtime = endtimetxt.Value == string.Empty ? "00:00" : endtimetxt.Value;
+                string enddate = Convert.ToDateTime(enddatetxt.Value + " " + endtime).ToString("yyyy-MM-dd HH:mm");
+                string stringtxt = string.Empty;
+
                 //string get = $"select * from DL_Avg order by Timestamp desc ";
-                string get = $"select * from DL_Avg where Timestamp between '{fromdate} 00:00' and '{enddate} 23:59' order by Timestamp asc ";
+                string get = $"select * from DL_Avg where Timestamp between '{fromdate}' and '{enddate}' order by Timestamp asc ";
                 DataTable dt = Utils.GetRequest(get);
                 Repeater25.DataSource = dt;
                 Repeater25.DataBind();
-                GetStringCurrent(dt,fromdate,enddate,condition5);
+                if(dt.Rows.Count>0)
+                {
+                    GetStringCurrent(dt, fromdate, enddate, condition5);
+                }
+                else
+                {
+                    Literal1.Text = "No data for seleted date and time:  CS Logger ";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -100,20 +112,30 @@ namespace solar_monitor.main
   
               function drawChart()  {  
 var options = {
- title: 'Datalogger Average Graph for "+graphtitle+" from " + from + " to " + to + " ");
+ title: 'CS Logger Average for "+graphtitle+" from " + from + " to " + to + " ");
                 strScript.Append(@"',
              curveType: 'function',
-             legend: { position: 'bottom' },
-                 
+            legend: { position: 'right' },
+ hAxis: {
+         title: 'T(t)");
+                strScript.Append(@"'
+
+        },
            
-          
-                  
-                 chartArea: { width: '90%', height: '90%' },
-                  legend: {position: 'right', textStyle: { color: '#b1b1b1' } },
-                    lineWidth: 3,
+           vAxis:
+            {
+            title: '" + graphtitle + ""); 
+                strScript.Append(@"',
+        },
+                 
+              width: '90%',
+        height: '85%',
+                     
+       
+                    lineWidth: 2,
                   backgroundColor: {fill: 'transparent'},
 curveType: 'function',
-          pointSize: 2,
+          pointSize: 1,
                  
                   animation: {
                       duration: 1000,
@@ -125,7 +147,7 @@ curveType: 'function',
                   ['Date',");
                 foreach (ListItem item in countryoforiginlistbx.Items)
                 {
-                    string selecteditem = item.Selected ? string.Format("'{0}',", item.Value) : String.Empty;
+                    string selecteditem = item.Selected ? string.Format("'{0}',", item.Text) : String.Empty;
                     if (!string.IsNullOrEmpty(selecteditem))
                     {
                         strScript.Append("" +  selecteditem);
@@ -142,7 +164,7 @@ curveType: 'function',
                     strScript.Append("['" + Convert.ToDateTime(row["Timestamp"]).ToString("d-MMM HH:mm") + "',");
                     foreach (ListItem item in countryoforiginlistbx.Items)
                     {
-                        string selecteditem = item.Selected ? string.Format("{0}", item.Value) : String.Empty;
+                        string selecteditem = item.Selected ? string.Format("{0}", item.Text) : String.Empty;
                         if (!string.IsNullOrEmpty(selecteditem))
                         {
                             strScript.Append("" + row["" + selecteditem + ""]+ "," );

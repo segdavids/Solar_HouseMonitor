@@ -36,7 +36,7 @@
 					 <div class="form-group">
 					<div class="row">
 						
-						  <div class="col-md-1">
+						<%--  <div class="col-md-1">
 									<div class="form-group">
 									  <label class="form-label">String Type</label>
 										<asp:DropDownList ID="DropDownList1" class="form-select" runat="server">
@@ -48,18 +48,18 @@
                                         </asp:DropDownList>
 									
 									</div>
-								  </div>
+								  </div>--%>
 						  <div class="col-md-1">
 									<div class="form-group">
 									  <label class="form-label">Unit</label>
 										<asp:DropDownList ID="DropDownList2" class="form-select" runat="server">
                                             <asp:ListItem>All</asp:ListItem>
-                                            <asp:ListItem>Voltage</asp:ListItem>
-                                            <asp:ListItem>Current</asp:ListItem>
-                                            <asp:ListItem>P(P)</asp:ListItem>
-                                            <asp:ListItem>Volt. VS Curr.</asp:ListItem>
-                                            <asp:ListItem>Curr. VS Volt.</asp:ListItem>
-                                            <asp:ListItem>P. VS Volt.</asp:ListItem>
+                                            <asp:ListItem>V - T</asp:ListItem>
+                                            <asp:ListItem>C - T</asp:ListItem>
+                                            <asp:ListItem>P - T</asp:ListItem>
+                                            <asp:ListItem>V - I</asp:ListItem>
+                                            <asp:ListItem>I - V</asp:ListItem>
+                                            <asp:ListItem>P - V</asp:ListItem>
                                         </asp:DropDownList>
 									</div>
 								  </div>
@@ -77,9 +77,9 @@
 							  <label class="form-label">Start Time</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
-								<i class="fa fa-calendar"></i>
+								<i class="fa fa-clock-o"></i>
 							  </div>
-							  <input class="form-control" runat="server" id="starttimetxt" type="time" name="time">
+							  <input class="form-control" runat="server" id="starttimetxt"  type="time" name="time">
 							<!-- /.input group -->
 						</div>
 							</div>
@@ -97,7 +97,7 @@
 							  <label class="form-label">End Time</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
-								<i class="fa fa-calendar"></i>
+								<i class="fa fa-clock-o"></i>
 							  </div>
 							  <input class="form-control" runat="server" id="endtimetxt" type="time" name="time">
 							<!-- /.input group -->
@@ -107,7 +107,7 @@
 						 <div class="row">
 							   <div class="col-md-3">
 									<div class="form-group">
-									  <label class="form-label">Unit</label>
+									  <label class="form-label">CS Logger Paramter</label>
 										<asp:ListBox ID="countryoforiginlistbx" class="form-control custom-select" runat="server" SelectionMode="Multiple"></asp:ListBox>
 								
 									</div>
@@ -135,9 +135,46 @@
                          <div class="box-body">
                              <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                              <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                             <div id="curve_chart" style="height: 700px; width: 100%"></div>
-							  <asp:Literal ID="Literal2" runat="server"></asp:Literal>
-                                        <div id="cslogger_graph" style="height: 700px;margin-top:50px; width: 100%"></div>
+							 <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+							  <asp:Literal ID="Literal3" runat="server"></asp:Literal>
+							  <asp:Literal ID="Literal4" runat="server"></asp:Literal>
+							  <asp:Literal ID="Literal5" runat="server"></asp:Literal>
+							  <asp:Literal ID="Literal6" runat="server"></asp:Literal>
+							 <div class="row">
+								 <div class="col-md-6" id="str1" runat="server" visible="false">
+									  <div id="curve_chart" style="height: 400px; width: 100%"></div>
+									 <span id="nodata1" runat="server">No Data for String 1</span>
+								 </div>
+								 <div class="col-md-6" id="str2" runat="server" visible="false">
+									  <div id="string2_curve" style="height: 400px; width: 100%"></div>
+									  <span id="nodata2" runat="server">No Data for String 2</span>
+								 </div>
+								
+							 
+								 <div class="col-md-6" id="str3" runat="server" visible="false">
+									  <div id="string3_curve" style="height: 400px; width: 100%"></div>
+									  <span id="nodata3" runat="server">No Data for String 3</span>
+								 </div>
+								 <div class="col-md-6" id="str4" runat="server" visible="false">
+									  <div id="string4_curve" style="height: 400px; width: 100%"></div>
+									  <span id="nodata4" runat="server">No Data for String 4</span>
+								 </div>
+								
+							 
+								 <div class="col-md-6" id="str5" runat="server" visible="false">
+									  <div id="curve5_chart" style="height: 400px; width: 100%"></div>
+									  <span id="nodata5" runat="server">No Data for String 5</span>
+								 </div>
+								<div class="col-md-6" id="str6" runat="server" visible="false">
+                                 <div id="cslogger_graph" style="height: 400px; width: 100%;margin-top:50px;	"></div>
+									</div>
+								
+							 </div>
+
+
+							 
+                             
+							 
 
                          </div>
 				<!-- /.box-body -->
@@ -145,7 +182,7 @@
 					
 					 <div class="box">
 				<div class="box-header with-border">
-				  <h4 class="box-title">REPORT LOG</h4>
+				  <h4 class="box-title">TABULAR STRING REPORT </h4>
 					
 				</div>
 				<!-- /.box-header -->
@@ -156,10 +193,11 @@
 
 							<tr>
 								<th>S/N</th>
-								<th>Report Date</th>
-								<th>Report Time</th>
+								<th>Report Date & Time</th>
+<%--								<th>Report Time</th>--%>
 								<th>Voltage(v)</th>
 								<th>Current(A)</th>
+								<th>Power(w)</th>
 								
 							</tr>
 						</thead>
@@ -168,26 +206,16 @@
 							<ItemTemplate>
 							<tr>
 								<td>  <%#Container.ItemIndex+1 %></td>
-								<td><%# Convert.ToDateTime(Eval("Date")).ToString("dd/MMM/yyyy") %></td>
-								<td><%# Eval("Time") %></td>
+								<td><%# Convert.ToDateTime(Eval("DateTime")).ToString("dd,MMM yyyy HH:mm") %></td>
+<%--								<td><%# Eval("Time") %></td>--%>
 								<td><%# Eval("Voltage") %></td>
 								<td><%# Eval("SCurrent") %></td>
+								<td><%# Eval("Power") %></td>
 							</tr>
 							</ItemTemplate>
 								</asp:Repeater>
-						<%--</tbody>				  
-						<tfoot>
-							<tr>
-									<th>S/N</th>
-								<th>Report Date</th>
-								<th>Cluster Name</th>
-								<th>Coordinates</th>
-								<th>Uploaded Location</th>
-								<th>Map Location</th>
-								<th>Info</th>
-								<th>Status</th>
-							</tr>
-						</tfoot>--%>
+						</tbody>				  
+						
 					</table>
 					</div>   
 					

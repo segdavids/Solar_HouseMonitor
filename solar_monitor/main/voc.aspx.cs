@@ -56,10 +56,10 @@ namespace solar_monitor.main
                     default:
                         break;
                 }
-                string get = $"select Date,Voc,Isc,Radiation,convert(varchar(5), Time,21) as time from Voic_Ic_Rad where String_No={stringtxt} and Date between '{fromdate}' and '{enddate}' and Time between '{tempstarttime}' and '{tempendtime}' order by Time asc ";
+                string get = $"select Date,DateTime,Voc,Isc,Radiation,convert(varchar(5), Time,21) as time from Voic_Ic_Rad where String_No={stringtxt} and DateTime between '{fromdate}' and '{enddate}' and Time between '{tempstarttime}' and '{tempendtime}' order by Time asc ";
                 
                 stringspan.InnerHtml = stringtxt;
-               stringspan.InnerHtml = get;
+              // stringspan.InnerHtml = get;
                 string converteddatefrom = Convert.ToDateTime(fromdate).ToString("dd, MMM yyyy") + " " + tempstarttime ;
                 string converteddateto = Convert.ToDateTime(enddate).ToString("dd, MMM yyyy") + " " + tempendtime;
                 startdatespan.InnerHtml = Convert.ToDateTime(fromdate).ToString("dd MMM, yyyy") +" "+ tempstarttime +" TO "+ Convert.ToDateTime(enddate).ToString("dd MMM, yyyy") +" "+ tempendtime ;
@@ -69,7 +69,7 @@ namespace solar_monitor.main
                 switch (rtype)
                 {
                     case "All":
-                        GetStringCurrent(dt, stringtxt, converteddatefrom, converteddateto);
+                        GetStringCurrent(dt, stringtxt, converteddatefrom, converteddateto,"I(A) V(v)","T(t)");
                         break;
                     case "Voc":
                         GetStringVolatage(dt, stringtxt,"Voc","VOC","blue", converteddatefrom, converteddateto);
@@ -93,7 +93,7 @@ namespace solar_monitor.main
         }
 
 
-        private void GetStringCurrent(DataTable dt, string str, string from, string to)
+        private void GetStringCurrent(DataTable dt, string str, string from, string to, string yaxis, string haxis)
         {
             StringBuilder strScript = new StringBuilder();
 
@@ -112,17 +112,29 @@ var options = {
  title: 'Voc & Isc Graph for STRING" + str + " from "+from+ " to "+ to + " ");
                 strScript.Append(@"',
              curveType: 'function',
-             legend: { position: 'bottom' },
-                 
+             legend: { position: 'right' },
+ hAxis: {
+         title: '" + haxis + "");
+                strScript.Append(@"'
+
+        },
            
+           vAxis:
+            {
+            title: '" + yaxis + ""); 
+                strScript.Append(@"',
+        },
+                 
+              width: '90%',
+        height: '85%',
+                     
+       
+                    lineWidth: 1,
           
                   
-                 chartArea: { width: '90%', height: '90%' },
-                  legend: {position: 'right', textStyle: { color: '#b1b1b1' } },
-                    lineWidth: 3,
                   backgroundColor: {fill: 'transparent'},
 curveType: 'function',
-          pointSize: 2,
+          pointSize: 1,
                  
                   animation: {
                       duration: 1000,
@@ -135,7 +147,7 @@ curveType: 'function',
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM") + " " + row["Time"] + "'," + row["Voc"] + "," + row["Isc"] + "],");
+                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM HH:mm") + "'," + row["Voc"] + "," + row["Isc"] + "],");
                 }
                 strScript.Remove(strScript.Length - 1, 1);
                 strScript.Append("]);");
@@ -200,7 +212,7 @@ curveType: 'function',
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM") + " " + row["Time"] + "'," + row[""+ unit+""] + "],");
+                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM HH:mm") + "'," + row[""+ unit+""] + "],");
                 }
                 strScript.Remove(strScript.Length - 1, 1);
                 strScript.Append("]);");
@@ -263,7 +275,7 @@ curveType: 'function',
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM") + "," + row["Time"] + "'," + row["voltage"] + "," + row["SCurrent"] + "],");
+                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM HH:mm") + "'," + row["voltage"] + "," + row["SCurrent"] + "],");
                 }
                 strScript.Remove(strScript.Length - 1, 1);
                 strScript.Append("]);");

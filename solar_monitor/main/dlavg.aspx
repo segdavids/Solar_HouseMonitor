@@ -37,14 +37,14 @@
 					 <div class="form-group">
 					<div class="row">
 						
-						  <div class="col-md-3">
+						  <div class="col-md-2">
 									<div class="form-group">
 									  <label class="form-label">Unit</label>
 										<asp:ListBox ID="countryoforiginlistbx" class="form-control custom-select" runat="server" SelectionMode="Multiple"></asp:ListBox>
 								
 									</div>
 								  </div>
-						<div class="col-3">
+						<div class="col-2">
 							  <label class="form-label">Start Date</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
@@ -54,7 +54,17 @@
 							</div>
 							<!-- /.input group -->
 						</div>
-						<div class="col-3">
+						<div class="col-2">
+							  <label class="form-label">Start Time</label>
+							<div class="input-group">
+							  <div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							  </div>
+							  <input class="form-control" runat="server" id="starttimetxt" type="time" name="time">
+							<!-- /.input group -->
+						</div>
+							</div>
+						<div class="col-2">
 						   <label class="form-label">End Date</label>
 							<div class="input-group">
 							  <div class="input-group-addon">
@@ -64,6 +74,16 @@
 							</div>
 							<!-- /.input group -->
 						</div>
+						<div class="col-2">
+							  <label class="form-label">End Time</label>
+							<div class="input-group">
+							  <div class="input-group-addon">
+								<i class="fa fa-clock-o"></i>
+							  </div>
+							  <input class="form-control" runat="server" id="endtimetxt" type="time" name="time">
+							<!-- /.input group -->
+						</div>
+							</div>
 					</div>
 						 <div class="row">
 							 <div class="col-3">

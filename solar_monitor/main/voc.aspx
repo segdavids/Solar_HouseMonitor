@@ -120,7 +120,7 @@
 				<div class="box-body">
 						<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                         <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                                        <div id="curve_chart" style="height: 750px; width: 100%"></div>
+                                        <div id="curve_chart" style="height: 500px; width: 100%"></div>
 					
 				</div>
 				<!-- /.box-body -->
