@@ -12,6 +12,7 @@ using solar_monitor.Models;
 using System.IO;
 using AspDotNet.FTPHelper;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace solar_monitor.main
 {
@@ -191,14 +192,55 @@ namespace solar_monitor.main
                 Utils.NonQeryRequest(del);
                 for (int i = 1; i < 7; i++)
                 {
-                   File.Delete(@"C:\Files\H000" + i + ".csv");// ENSURE TO ENABLE THIS BIT
+                    // File.Delete(@"C:\Files\H000" + i + ".csv");// ENSURE TO ENABLE THIS BIT
 
-                    WebClient client = new WebClient();
-                    client.Credentials = new NetworkCredential(username, password);
-                    client.DownloadFile(
-                      $"ftp://{domain}+{fileurl}+H000+{i}.csv", @"C:\Files\H000"+i+".csv");
-                    string excelPath = @"C:\Files\H000" + i + ".csv";
-                    if(File.Exists(excelPath))
+                    //DOWNLOAD FILE 
+                    //string inputfilepath = @"C:\Temp\FileName.exe";
+                    //string ftphost = "xxx.xx.x.xxx";
+                    //string ftpfilepath = "/Updater/Dir1/FileName.exe";
+                    // string excelPath = @"C:\Files\H000" + i + ".csv";
+                    string excelPath = "C:\\Users\\User\\Desktop\\database for iV Curve tracer\\H000" + i + ".csv";
+
+                    string ftpfullpath = $"ftp://{domain}{fileurl}H000{i}.csv"; // "ftp://" + ftphost + ftpfilepath;
+
+    //                using (WebClient request = new WebClient())
+    //                {
+    //                    request.Credentials = new NetworkCredential(username, password);
+    //                    byte[] fileData = request.DownloadData(ftpfullpath);
+
+    //                    using (FileStream file = File.Create(excelPath))
+    //                    {
+    //                        file.Write(fileData, 0, fileData.Length);
+    //                        file.Close();
+    //                    }
+    //                   // MessageBox.Show("Download Complete");
+    //                }
+
+
+    //                FtpWebRequest request =
+    //(FtpWebRequest)WebRequest.Create(ftpfullpath);
+    //                request.Credentials = new NetworkCredential(username, password);
+    //                request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+    //                using (Stream ftpStream = request.GetResponse().GetResponseStream())
+    //                using (Stream fileStream = File.Create(excelPath))
+    //                {
+    //                    byte[] buffer = new byte[10240];
+    //                    int read;
+    //                    while ((read = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
+    //                    {
+    //                        fileStream.Write(buffer, 0, read);
+    //                        //Console.WriteLine("Downloaded {0} bytes", fileStream.Position);
+    //                    }
+    //                }
+
+                    //WebClient client = new WebClient();
+                    //client.Credentials = new NetworkCredential(username, password);
+
+                    //client.DownloadFile(
+                    //  $"ftp://{domain}{fileurl}H000+{i}.csv", $"C:\\Files\\H000{i}.csv");
+                    // string excelPath = @"C:\Files\H000" + i + ".csv";
+                    if (File.Exists(excelPath))
                     {
                         string deletedb = "delete from Temp_Voltage_1 where stringId="+i+"";
                         Utils.NonQeryRequest(deletedb);

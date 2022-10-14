@@ -26,37 +26,37 @@ namespace solar_monitor.main
             averagecurrentanalysis();
         }
 
-        public void getstring1()
+       public void getstring1()
         {
-            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=1 order by Time desc";
+            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=1 order by DateTime desc";
             DataTable dt = Utils.GetRequest(query);
             Repeater25.DataSource = dt;
             Repeater25.DataBind();
         }
         public void getstring2()
         {
-            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=2 order by Time desc";
+            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=2 order by DateTime desc";
             DataTable dt = Utils.GetRequest(query);
             Repeater2.DataSource = dt;
             Repeater2.DataBind();
         }
         public void getstring3()
         {
-            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=3 order by Time desc";
+            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=3 order by DateTime desc";
             DataTable dt = Utils.GetRequest(query);
             Repeater4.DataSource = dt;
             Repeater4.DataBind();
         }
         public void getstring4()
         {
-            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=4 order by Time desc";
+            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=4 order by DateTime desc";
             DataTable dt = Utils.GetRequest(query);
             Repeater6.DataSource = dt;
             Repeater6.DataBind();
         }
         public void getstring5()
         {
-            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=5 order by Time desc";
+            string query = "select top 1 Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid=5 order by DateTime desc";
             DataTable dt = Utils.GetRequest(query);
             Repeater7.DataSource = dt;
             Repeater7.DataBind();
@@ -70,14 +70,14 @@ namespace solar_monitor.main
                 // string enddate = DateTime.Now.ToString("MM/dd/yyyy");
                 string fromdate = "02/25/2022";
                 string enddate = "02/25/2022";
-                string get = $"select String_No,Date,Voc,Isc,Radiation,convert(varchar(5), Time,21) as time from Voic_Ic_Rad where Date between '{fromdate}' and '{enddate}' order by Time asc ";
+                string get = $"select String_No,Date,DateTime,Voc,Isc,Radiation,convert(varchar(5), Time,21) as time from Voic_Ic_Rad order by String_No,DateTime desc ";
                 DataTable dt = Utils.GetRequest(get);
                 repeater34.DataSource = dt;
                 //repeater1.DataSource = dt;
                 repeater34.DataBind();
                 //repeater1.DataBind();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 alert.Visible = true;
                 innertext.InnerHtml = ex.Message.ToString();
@@ -90,8 +90,7 @@ namespace solar_monitor.main
             Random rd = new Random();
             int srting = rd.Next(1, 6);
             // string date = DateTime.Now.ToString("MM/dd/yyyy");
-            string date = "02/25/2022";
-            string get = $"select Stringid,Date,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid={srting} and Date = '{date}' order by Time asc ";
+            string get = $"select top 20 Stringid,Date,DateTime,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid={srting} order by DateTime desc ";// and Date = '{date}' order by Time asc ";
             DataTable dt = Utils.GetRequest(get);
             StringBuilder strScript = new StringBuilder();
 
@@ -104,15 +103,26 @@ namespace solar_monitor.main
   
               function drawChart()  {  
 var options = {
-title: 'Current (A) & Voltage (V) Graph for String" + srting + "");
+title: 'Old House String" + srting + ": Latest Readings");
                 strScript.Append(@"',
              curveType: 'function',
-                  
-                  chartArea: { width: '90%', height: '90%' },
-                  legend: {position: 'right', textStyle: { color: '#b1b1b1' } },
+             legend: { position: 'right' },
+                 hAxis: {
+         title: 'T(t)");
+                strScript.Append(@"'
+
+        },
+           
+           vAxis:
+            {
+            title: 'A(A) & V(v)");
+                strScript.Append(@"',
+        },
+                   width: '90%',
+        height: '85%',                  
+
                     lineWidth: 2,
                   backgroundColor: {fill: 'transparent'},
-curveType: 'function',
           pointSize: 2,
                   animation: {
                       duration: 1000,
@@ -121,7 +131,7 @@ curveType: 'function',
               };
 
                     var data = google.visualization.arrayToDataTable([
-                  ['Date', 'Voltage','Current'],");
+                  ['DateTime', 'Voltage','Current'],");
 
                 foreach (DataRow row in dt.Rows)
                 {

@@ -159,15 +159,6 @@ namespace solar_monitor.main
         protected global::System.Web.UI.WebControls.Repeater Repeater7;
 
         /// <summary>
-        /// repeater34 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repeater34;
-
-        /// <summary>
         /// firstnametxt control.
         /// </summary>
         /// <remarks>
@@ -184,5 +175,14 @@ namespace solar_monitor.main
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater5;
+
+        /// <summary>
+        /// repeater34 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repeater34;
     }
 }

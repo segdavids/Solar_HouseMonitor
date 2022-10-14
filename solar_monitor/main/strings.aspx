@@ -162,7 +162,7 @@
 								
 							 
 								 <div class="col-md-6" id="str5" runat="server" visible="false">
-									  <div id="curve5_chart" style="height: 400px; width: 100%"></div>
+									  <div id="string5_curve" style="height: 400px; width: 100%"></div>
 									  <span id="nodata5" runat="server">No Data for String 5</span>
 								 </div>
 								<div class="col-md-6" id="str6" runat="server" visible="false">

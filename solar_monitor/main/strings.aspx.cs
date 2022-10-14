@@ -108,7 +108,7 @@ namespace solar_monitor.main
                
                 string get = String.Empty;
                 DataTable dt = new DataTable();
-                get = $"select Stringid,Date,convert(varchar(5), Time,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
+                get = $"select Stringid,Date,convert(varchar(5), DateTime,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
                 dt = Utils.GetRequest(get);
                 Repeater25.DataSource = dt;
                 Repeater25.DataBind();
@@ -165,7 +165,7 @@ namespace solar_monitor.main
                             Literal2.Text = forlit2.Trim().Length > 0 ? forlit2 : "No Data for String 2";
                         if (forlit3.Trim().Length > 0)
                             str3.Visible = true;    
-                            nodata3.Visible = true;
+                            nodata3.Visible = false;
                             Literal3.Text = forlit3.Trim().Length > 0 ? forlit3 : "No Data for String 3";
                         if (forlit4.Trim().Length > 0)
                             str4.Visible = true;
@@ -190,7 +190,7 @@ namespace solar_monitor.main
                         for (int i = 1; i < 6; i++)
                         {
                             string _sqlWhere = "Stringid = " + i + "";
-                            string _sqlOrder = "Time asc";
+                            string _sqlOrder = "DateTime asc";
                             DataRow[] rows = dt2.Select(_sqlWhere, _sqlOrder);
                             if (rows.Length > 0)
                             {
@@ -225,7 +225,7 @@ namespace solar_monitor.main
                         Literal2.Text = forlit2.Length > 0 ? forlit2 : "No Data for String 2";
                         if (forlit3.Length > 0)
                             str3.Visible = true;
-                        nodata3.Visible = true;
+                        nodata3.Visible = false;
                         Literal3.Text = forlit3.Length > 0 ? forlit3 : "No Data for String 3";
                         if (forlit4.Length > 0)
                             str4.Visible = true;
@@ -250,7 +250,7 @@ namespace solar_monitor.main
                         for (int i = 1; i < 6; i++)
                         {
                             string _sqlWhere = "Stringid = " + i + "";
-                            string _sqlOrder = "Time asc";
+                            string _sqlOrder = "DateTime asc";
                             DataRow[] rows = dt2.Select(_sqlWhere, _sqlOrder);
                             if (rows.Length > 0)
                             {
@@ -285,7 +285,7 @@ namespace solar_monitor.main
                             Literal2.Text = forlit2.Length > 0 ? forlit2 : "No Data for String 2";
                         if (forlit3.Length > 0)
                             str3.Visible = true;
-                            nodata3.Visible = true;
+                            nodata3.Visible = false;
                             Literal3.Text = forlit3.Length > 0 ? forlit3 : "No Data for String 3";
                         if (forlit4.Length > 0)
                             str4.Visible = true;
@@ -310,7 +310,7 @@ namespace solar_monitor.main
                         for (int i = 1; i < 6; i++)
                         {
                             string _sqlWhere = "Stringid = " + i + "";
-                            string _sqlOrder = "Time asc";
+                            string _sqlOrder = "DateTime asc";
                             DataRow[] rows = dt2.Select(_sqlWhere, _sqlOrder);
                             if (rows.Length > 0)
                             {
@@ -345,7 +345,7 @@ namespace solar_monitor.main
                         Literal2.Text = forlit2.Length > 0 ? forlit2 : "No Data for String 2";
                         if (forlit3.Length > 0)
                             str3.Visible = true;
-                        nodata3.Visible = true;
+                        nodata3.Visible = false;
                         Literal3.Text = forlit3.Length > 0 ? forlit3 : "No Data for String 3";
                         if (forlit4.Length > 0)
                             str4.Visible = true;
@@ -360,7 +360,7 @@ namespace solar_monitor.main
 
                     //POWER VS TIME
                     case "P - T":
-                        get = $"select Stringid,DateTime,convert(varchar(5), Time,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where Date between '{fromdate}' and '{enddate}' order by Time asc ";
+                        get = $"select Stringid,DateTime,convert(varchar(5), Time,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
                         dt2 = Utils.GetRequest(get);
                         list = new List<string> { "DateTime", "Power" };
                         forlit1 = string.Empty;
@@ -371,7 +371,7 @@ namespace solar_monitor.main
                         for (int i = 1; i < 6; i++)
                         {
                             string _sqlWhere = "Stringid = " + i + "";
-                            string _sqlOrder = "Time asc";
+                            string _sqlOrder = "DateTime asc";
                             DataRow[] rows = dt2.Select(_sqlWhere, _sqlOrder);
                             if (rows.Length > 0)
                             {
@@ -406,7 +406,7 @@ namespace solar_monitor.main
                         Literal2.Text = forlit2.Length > 0 ? forlit2 : "No Data for String 2";
                         if (forlit3.Length > 0)
                             str3.Visible = true;
-                        nodata3.Visible = true;
+                        nodata3.Visible = false;
                         Literal3.Text = forlit3.Length > 0 ? forlit3 : "No Data for String 3";
                         if (forlit4.Length > 0)
                             str4.Visible = true;
@@ -424,7 +424,7 @@ namespace solar_monitor.main
 
                     //CURRENT VS VOLTAGE
                     case "I - V":
-                        get = $"select Stringid,DateTime,convert(varchar(5), Time,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
+                        get = $"select Stringid,DateTime,convert(varchar(5), DateTime,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
                         dt2 = Utils.GetRequest(get);
                         list = new List<string> { "SCurrent", "Voltage" };
                         forlit1 = string.Empty;
@@ -435,7 +435,7 @@ namespace solar_monitor.main
                         for (int i = 1; i < 6; i++)
                         {
                             string _sqlWhere = "Stringid = " + i + "";
-                            string _sqlOrder = "Time asc";
+                            string _sqlOrder = "DateTime asc";
                             DataRow[] rows = dt2.Select(_sqlWhere, _sqlOrder);
                             if (rows.Length > 0)
                             {
@@ -470,7 +470,7 @@ namespace solar_monitor.main
                         Literal2.Text = forlit2.Length > 0 ? forlit2 : "No Data for String 2";
                         if (forlit3.Length > 0)
                             str3.Visible = true;
-                        nodata3.Visible = true;
+                        nodata3.Visible = false;
                         Literal3.Text = forlit3.Length > 0 ? forlit3 : "No Data for String 3";
                         if (forlit4.Length > 0)
                             str4.Visible = true;
@@ -486,7 +486,7 @@ namespace solar_monitor.main
 
                      //POWER VS VOLTAGE
                     case "P - V":
-                        get = $"select Stringid,DateTime,convert(varchar(5), Time,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
+                        get = $"select Stringid,DateTime,convert(varchar(5), DateTime,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
                         dt2 = Utils.GetRequest(get);
                         list = new List<string> { "Power", "Voltage" };
                         forlit1 = string.Empty;
@@ -497,7 +497,7 @@ namespace solar_monitor.main
                         for (int i = 1; i < 6; i++)
                         {
                             string _sqlWhere = "Stringid = " + i + "";
-                            string _sqlOrder = "Time asc";
+                            string _sqlOrder = "DateTime asc";
                             DataRow[] rows = dt2.Select(_sqlWhere, _sqlOrder);
                             if (rows.Length > 0)
                             {
@@ -532,7 +532,7 @@ namespace solar_monitor.main
                         Literal2.Text = forlit2.Length > 0 ? forlit2 : "No Data for String 2";
                         if (forlit3.Length > 0)
                             str3.Visible = true;
-                        nodata3.Visible = true;
+                        nodata3.Visible = false;
                         Literal3.Text = forlit3.Length > 0 ? forlit3 : "No Data for String 3";
                         if (forlit4.Length > 0)
                             str4.Visible = true;

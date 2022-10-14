@@ -212,27 +212,27 @@
 
                                                 <h5><i class="fa fa-tasks"></i>String | Date</h5>
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="icon bg-success-light rounded-circle w-40 h-40 text-center l-h-60">
                                                             <span class="fs-30 fa fa-bolt"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
                                                         </div>
                                                         <h5 class="card-title mb-0 me-2">Volts</h5>
                                                         <small class="text-muted" style="color: white; font-weight: bold">VOP</small>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="icon bg-success-light rounded-circle w-40 h-40 text-center l-h-60">
                                                                     <span class="fs-30 fa fa-plug"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
                                                         </div>
                                                         <h5 class="card-title mb-0 me-2">Amps.</h5>
                                                         <small class="text-muted" style="color: white; font-weight: bold">Isc</small>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                   <%-- <div class="col-md-4">
                                                         <div class="icon bg-warning-light rounded-circle w-40 h-40 text-center l-h-60">
                                                                     <span class="fs-30 fa fa-exclamation-triangle"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
                                                         </div>
                                                         <h5 class="card-title mb-0 me-2">Rad</h5>
                                                         <small class="text-muted" style="color: white; font-weight: bold">Radiation</small>
-                                                    </div>
+                                                    </div>--%>
                                                 </div>
                                             </div>
                                         </div>
@@ -243,27 +243,27 @@
                                                     <div class="card-info">
                                                         <h5><i class="fa fa-tasks"></i>String<%# Eval("String_No") %>  | <%# Convert.ToDateTime(Eval("Date")).ToString("dd, MMM yyyy") %> <%# Eval("Time") %></h5>
                                                         <div class="row">
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-6">
                                                                 <div class="icon bg-success-light rounded-circle w-40 h-40 text-center l-h-60">
                                                                     <span class="fs-30 fa fa-bolt"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
                                                                 </div>
                                                                 <h5 class="card-title mb-0 me-2"><%# Eval("Voc") %></h5>
                                                                 <small class="text-muted" style="color: white; font-weight: bold">VOC</small>
                                                             </div>
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-6">
                                                                 <div class="icon bg-success-light rounded-circle w-40 h-40 text-center l-h-60">
                                                                     <span class="fs-30 fa fa-plug"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
                                                                 </div>
                                                                 <h5 class="card-title mb-0 me-2"><%# Eval("Isc") %></h5>
                                                                 <small class="text-muted" style="color: white; font-weight: bold">ISC</small>
                                                             </div>
-                                                            <div class="col-md-4">
+                                                           <%-- <div class="col-md-4">
                                                                 <div class="icon bg-warning-light rounded-circle w-40 h-40 text-center l-h-60">
                                                                     <span class="fs-30 fa fa-exclamation-triangle"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
                                                                 </div>
                                                                 <h5 class="card-title mb-0 me-2"><%# Eval("Radiation") %></h5>
                                                                 <small class="text-muted" style="color: white; font-weight: bold">Radiation</small>
-                                                            </div>
+                                                            </div>--%>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -399,7 +399,7 @@
 									</h3>
 									<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                         <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-									 <div id="chartt_div" style="height: 600px; width: 100%"></div>
+									 <div id="chartt_div" style="height: 500px; width: 100%"></div>
 								</div>
 							</div>
 						
@@ -421,11 +421,11 @@
 						<thead>
 							<tr>
 								<th>S/N</th>
-								<th>Report Date</th>
-								<th>Report Time (24 Hrs)</th>
-								<th>Voic</th>
+								<th>Date/Time</th>
+								<th>String</th>
+								<th>Voc</th>
 								<th>Isc</th>
-								<th>Radiation</th>
+<%--								<th>Radiation</th>--%>
 							</tr>
 						</thead>
 						<tbody>
@@ -433,11 +433,11 @@
 								<ItemTemplate>
 							<tr>
 								<td><%#Container.ItemIndex+1 %></td>
-								<td><%# Convert.ToDateTime(Eval("Date")).ToString("dd/MMM/yyyy") %></td>
-								<td><%# Eval("Time") %></td>
+								<td><%# Convert.ToDateTime(Eval("DateTime")).ToString("dd/MMM/yyyy HH:mm") %></td>
+								<td><%# Eval("String_No") %></td>
 								<td><%# Eval("Voc") %></td>
 								<td><%# Eval("isc") %></td>
-								<td><%# Eval("Radiation") %></td>
+							<%--	<td><%# Eval("Radiation") %></td>--%>
 							</tr>
 							</ItemTemplate>
 								</asp:Repeater>							

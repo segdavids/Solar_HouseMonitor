@@ -446,53 +446,39 @@
 									</div>
 									
 									</div>
+								 <div class="card-info">
+                                                        <h5><i class="fa fa-tasks"></i>String<%# Eval("String_No") %>  | <%# Convert.ToDateTime(Eval("Date")).ToString("dd, MMM yyyy") %> <%# Eval("Time") %></h5>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="icon bg-success-light rounded-circle w-40 h-40 text-center l-h-60">
+                                                                    <span class="fs-30 fa fa-bolt"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+                                                                </div>
+                                                                <h5 class="card-title mb-0 me-2"><%# Eval("Voc") %></h5>
+                                                                <small class="text-muted" style="color: white; font-weight: bold">VOC</small>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="icon bg-success-light rounded-circle w-40 h-40 text-center l-h-60">
+                                                                    <span class="fs-30 fa fa-plug"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+                                                                </div>
+                                                                <h5 class="card-title mb-0 me-2"><%# Eval("Isc") %></h5>
+                                                                <small class="text-muted" style="color: white; font-weight: bold">ISC</small>
+                                                            </div>
+                                                           <%-- <div class="col-md-4">
+                                                                <div class="icon bg-warning-light rounded-circle w-40 h-40 text-center l-h-60">
+                                                                    <span class="fs-30 fa fa-exclamation-triangle"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+                                                                </div>
+                                                                <h5 class="card-title mb-0 me-2"><%# Eval("Radiation") %></h5>
+                                                                <small class="text-muted" style="color: white; font-weight: bold">Radiation</small>
+                                                            </div>--%>
+                                                        </div>
+                                                    </div>
                             
 
 								
 							</div>					
 						</div>
 						</div>
-                                                                <div class="box">
-                                                                    <div class="box-header">
-                                                                        <h4 class="box-title">H6 Summary Today</h4>
-
-                                                                    </div>
-                                                                    <div class="box-body">
-                                                                        <!-- /.box-header -->
-                                                                        <div class="box-body">
-                                                                            <div class="table-responsive">
-                                                                                <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                            <th>S/N</th>
-                                                                                            <th>Report Date</th>
-                                                                                            <th>Report Time (24 Hrs)</th>
-                                                                                            <th>Voic</th>
-                                                                                            <th>Isc</th>
-                                                                                            <th>Radiation</th>
-                                                                                        </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                        <asp:Repeater ID="repeater34" runat="server">
-                                                                                            <ItemTemplate>
-                                                                                                <tr>
-                                                                                                    <td><%#Container.ItemIndex+1 %></td>
-                                                                                                    <td><%# Convert.ToDateTime(Eval("Date")).ToString("dd/MMM/yyyy") %></td>
-                                                                                                    <td><%# Eval("Time") %></td>
-                                                                                                    <td><%# Eval("Voc") %></td>
-                                                                                                    <td><%# Eval("isc") %></td>
-                                                                                                    <td><%# Eval("Radiation") %></td>
-                                                                                                </tr>
-                                                                                            </ItemTemplate>
-                                                                                        </asp:Repeater>
-                                                                                    </tbody>
-
-                                                                                </table>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- /.box-body -->
-                                                                    </div>
-                                                                </div>
+                                                               
                                                             </div>
                                                         </div>
 
@@ -533,6 +519,48 @@
 						</div>
 					</div>
                                                         </div>
+
+														 <div class="box">
+                                                                    <div class="box-header">
+                                                                        <h4 class="box-title">H6 Summary Today</h4>
+
+                                                                    </div>
+                                                                    <div class="box-body">
+                                                                        <!-- /.box-header -->
+                                                                        <div class="box-body">
+                                                                            <div class="table-responsive">
+                                                                                <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>S/N</th>
+																							<th>Date/Time</th>
+																							<th>String</th>
+																							<th>Voc</th>
+																							<th>Isc</th>
+<%--                                                                                            <th>Radiation</th>--%>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <asp:Repeater ID="repeater34" runat="server">
+                                                                                            <ItemTemplate>
+                                                                                                <tr>
+                                                                                                    <td><%#Container.ItemIndex+1 %></td>
+																									<td><%# Convert.ToDateTime(Eval("DateTime")).ToString("dd/MMM/yyyy HH:mm") %></td>
+																									<td><%# Eval("String_No") %></td>
+																									<td><%# Eval("Voc") %></td>
+																									<td><%# Eval("isc") %></td>
+<%--                                                                                                    <td><%# Eval("Radiation") %></td>--%>
+                                                                                                </tr>
+                                                                                            </ItemTemplate>
+                                                                                        </asp:Repeater>
+                                                                                    </tbody>
+
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- /.box-body -->
+                                                                    </div>
+                                                                </div>
                                                     </div>
                                                 </section>
                                         </div>
@@ -556,10 +584,12 @@
 	<script src="../assets/vendor_plugins/bootstrap-slider/bootstrap-slider.js"></script>
 	<script src="../assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
 	<script src="../assets/vendor_components/flexslider/jquery.flexslider.js"></script>
+	<script src="../assets/vendor_components/datatable/datatables.min.js"></script>
 	
 	<!-- EduAdmin App -->
 	<script src="js/template.js"></script>
 	
 	<script src="js/pages/slider.js"></script>
+	<script src="js/pages/data-table.js"></script>
 </body>
 </html>
