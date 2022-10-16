@@ -118,7 +118,7 @@ namespace solar_monitor.main
                     case "All":
                         get = $"select Stringid,Date,convert(varchar(5), Time,21) as time,DateTime, Voltage,SCurrent as SCurrent, (Voltage*SCurrent) as Power from Temp_Voltage_1 where DateTime between '{fromdate}' and '{enddate}' order by Time asc ";
                         dt2 = Utils.GetRequest(get);
-                        List<string> list = new List<string> { "DateTime", "Voltage", "SCurrent", "Power" };
+                        List<string> list = new List<string> { "Voltage", "SCurrent", "Power" };
                         string forlit1=string.Empty;
                         string forlit2 = string.Empty;
                         string forlit3 = string.Empty;
@@ -135,19 +135,19 @@ namespace solar_monitor.main
                                 switch (i)
                                 {
                                     case 1:
-                                       forlit1 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "T", "I(A) V(v) P(w)", "curve_chart", Literal1);
+                                       forlit1 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "V(v)", "I(A) P(w)", "curve_chart", Literal1);
                                         break;
                                     case 2:
-                                        forlit2 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "T", "I(A) V(v) P(w)", "string2_curve", Literal2);
+                                        forlit2 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "V(v)", "I(A) P(w)", "string2_curve", Literal2);
                                         break;
                                     case 3:
-                                        forlit3 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "T", "I(A) V(v) P(w)", "string3_curve", Literal3);
+                                        forlit3 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "V(v)", "I(A) P(w)", "string3_curve", Literal3);
                                         break;
                                     case 4:
-                                        forlit4 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "T", "I(A) V(v) P(w)", "string4_curve", Literal4);
+                                        forlit4 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "V(v)", "I(A) P(w)", "string4_curve", Literal4);
                                         break;
                                     case 5:
-                                        forlit5 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "T", "I(A) V(v) P(w)", "string5_curve", Literal5);
+                                        forlit5 = IVCurveGraph(_newDataTable, fromdate, enddate, "Old House String" + i, list, "V(v)", "I(A) P(w)", "string5_curve", Literal5);
                                         break;
 
                                 }
@@ -894,7 +894,7 @@ curveType: 'function',
   
               function drawChart()  {  
 var options = {
- title: 'Datalogger Average Graph for " + graphtitle + " from " + from + " to " + to + " ");
+ title: '" + graphtitle + " from " + from + " to " + to + " ");
                 strScript.Append(@"',
              curveType: 'none',
              legend: { position: 'right' },
@@ -1032,9 +1032,9 @@ var options = {
                 foreach (var item in graphlist)
                 {
                     string selecteditem =  string.Format("'{0}',", item);
-                    if (selecteditem == "SCurrent")
+                    if (selecteditem == "'SCurrent',")
                     {
-                        selecteditem = selecteditem.Replace("S", "");// "Current";
+                        selecteditem = "'Current',";// "Current";
                         strScript.Append("" + selecteditem);
                     }
                     else

@@ -396,6 +396,8 @@
 												</span>	<span style="font-size:small">Voltage</span>
 										<span class="badge badge-sm badge-dot badge-danger me-5">
 												 </span>	<span style="font-size:small">Current</span>
+										<span class="badge badge-sm badge-dot badge-warning me-5">
+												 </span>	<span style="font-size:small">Power</span>
 									</h3>
 									<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                         <asp:Literal ID="Literal1" runat="server"></asp:Literal>

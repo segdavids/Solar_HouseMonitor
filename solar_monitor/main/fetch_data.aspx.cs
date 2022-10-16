@@ -199,40 +199,41 @@ namespace solar_monitor.main
                     //string ftphost = "xxx.xx.x.xxx";
                     //string ftpfilepath = "/Updater/Dir1/FileName.exe";
                     // string excelPath = @"C:\Files\H000" + i + ".csv";
-                    string excelPath = "C:\\Users\\User\\Desktop\\database for iV Curve tracer\\H000" + i + ".csv";
+                   // string excelPath = "C:\\Users\\User\\Desktop\\database for iV Curve tracer\\H000" + i + ".csv";
+                    string excelPath = System.Configuration.ConfigurationManager.AppSettings["csvpath"];
 
                     string ftpfullpath = $"ftp://{domain}{fileurl}H000{i}.csv"; // "ftp://" + ftphost + ftpfilepath;
 
-    //                using (WebClient request = new WebClient())
-    //                {
-    //                    request.Credentials = new NetworkCredential(username, password);
-    //                    byte[] fileData = request.DownloadData(ftpfullpath);
+                    //                using (WebClient request = new WebClient())
+                    //                {
+                    //                    request.Credentials = new NetworkCredential(username, password);
+                    //                    byte[] fileData = request.DownloadData(ftpfullpath);
 
-    //                    using (FileStream file = File.Create(excelPath))
-    //                    {
-    //                        file.Write(fileData, 0, fileData.Length);
-    //                        file.Close();
-    //                    }
-    //                   // MessageBox.Show("Download Complete");
-    //                }
+                    //                    using (FileStream file = File.Create(excelPath))
+                    //                    {
+                    //                        file.Write(fileData, 0, fileData.Length);
+                    //                        file.Close();
+                    //                    }
+                    //                   // MessageBox.Show("Download Complete");
+                    //                }
 
 
-    //                FtpWebRequest request =
-    //(FtpWebRequest)WebRequest.Create(ftpfullpath);
-    //                request.Credentials = new NetworkCredential(username, password);
-    //                request.Method = WebRequestMethods.Ftp.DownloadFile;
+                    //                FtpWebRequest request =
+                    //(FtpWebRequest)WebRequest.Create(ftpfullpath);
+                    //                request.Credentials = new NetworkCredential(username, password);
+                    //                request.Method = WebRequestMethods.Ftp.DownloadFile;
 
-    //                using (Stream ftpStream = request.GetResponse().GetResponseStream())
-    //                using (Stream fileStream = File.Create(excelPath))
-    //                {
-    //                    byte[] buffer = new byte[10240];
-    //                    int read;
-    //                    while ((read = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
-    //                    {
-    //                        fileStream.Write(buffer, 0, read);
-    //                        //Console.WriteLine("Downloaded {0} bytes", fileStream.Position);
-    //                    }
-    //                }
+                    //                using (Stream ftpStream = request.GetResponse().GetResponseStream())
+                    //                using (Stream fileStream = File.Create(excelPath))
+                    //                {
+                    //                    byte[] buffer = new byte[10240];
+                    //                    int read;
+                    //                    while ((read = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
+                    //                    {
+                    //                        fileStream.Write(buffer, 0, read);
+                    //                        //Console.WriteLine("Downloaded {0} bytes", fileStream.Position);
+                    //                    }
+                    //                }
 
                     //WebClient client = new WebClient();
                     //client.Credentials = new NetworkCredential(username, password);
@@ -240,6 +241,7 @@ namespace solar_monitor.main
                     //client.DownloadFile(
                     //  $"ftp://{domain}{fileurl}H000+{i}.csv", $"C:\\Files\\H000{i}.csv");
                     // string excelPath = @"C:\Files\H000" + i + ".csv";
+                    int count = 0;
                     if (File.Exists(excelPath))
                     {
                         string deletedb = "delete from Temp_Voltage_1 where stringId="+i+"";
@@ -296,6 +298,7 @@ namespace solar_monitor.main
                                     switch (feedback)
                                     {
                                         case "200":
+                                            count += count;
                                             // System.GC.Collect();
                                             //System.GC.WaitForPendingFinalizers();
                                             //File.Delete(picturePath);

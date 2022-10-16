@@ -97,8 +97,13 @@ namespace solar_monitor.main
         {
             Random rd = new Random();
             int srting = rd.Next(1, 6);
-           // string date = DateTime.Now.ToString("MM/dd/yyyy");
-            string get = $"select top 20 Stringid,Date,DateTime,convert(varchar(5), Time,21) as time, voltage,SCurrent from Temp_Voltage_1 where stringid={srting} order by DateTime desc ";// and Date = '{date}' order by Time asc ";
+            string getlatestdate = "select top 1 DateTime from Temp_Voltage_1 order by DateTime desc";
+            DataTable datedt = Utils.GetRequest(getlatestdate); 
+            string datetime = Convert.ToDateTime(datedt.Rows[0]["DateTime"].ToString()).ToString("yyyy-MM-dd HH:mm");
+            string last30min = Convert.ToDateTime(datedt.Rows[0]["DateTime"].ToString()).AddMinutes(-30).ToString("yyyy-MM-dd HH:mm");
+            //string startdate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            //string enddate = DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd HH:mm");
+            string get = $"select top 20 Stringid,Date,DateTime,convert(varchar(5), Time,21) as time, voltage,SCurrent,(voltage*SCurrent) as Power from Temp_Voltage_1 where stringid={srting} and DateTime between '{last30min}' and '{datetime}' order by DateTime desc ";// and Date = '{date}' order by Time asc ";
             DataTable dt = Utils.GetRequest(get);
             StringBuilder strScript = new StringBuilder();
 
@@ -111,19 +116,19 @@ namespace solar_monitor.main
   
               function drawChart()  {  
 var options = {
-title: 'Old House String" + srting + ": Latest Readings");
+title: 'Old House String" + srting + ": Latest Readings between "+last30min+" and "+datetime+"");
                 strScript.Append(@"',
              curveType: 'function',
              legend: { position: 'right' },
                  hAxis: {
-         title: 'T(t)");
+         title: 'V(v)");
                 strScript.Append(@"'
 
         },
            
            vAxis:
             {
-            title: 'A(A) & V(v)"); 
+            title: 'I(A) & P(w)"); 
                 strScript.Append(@"',
         },
                    width: '90%',
@@ -139,11 +144,11 @@ title: 'Old House String" + srting + ": Latest Readings");
               };
 
                     var data = google.visualization.arrayToDataTable([
-                  ['DateTime', 'Voltage','Current'],");
+                  ['Voltage', 'Power','Current'],");
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    strScript.Append("['" + Convert.ToDateTime(row["Date"]).ToString("d-MMM") + "," + row["Time"] + "'," + row["voltage"] + "," + row["SCurrent"] + "],");
+                    strScript.Append("[" + row["voltage"] + "," + row["Power"] + "," + row["SCurrent"] + "],");
                 }
                 strScript.Remove(strScript.Length - 1, 1);
                 strScript.Append("]);");
